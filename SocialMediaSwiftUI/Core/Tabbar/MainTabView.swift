@@ -35,7 +35,7 @@ struct MainTabView: View {
             }
             
             Tab {
-                Text("Profile")
+                ProfileView()
             } label: {
                 Image(systemName: "person")
             }

@@ -18,6 +18,21 @@ struct ProfileView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                toolbarContent
+            }
+        }
+    }
+    
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {} label: {
+                Image(systemName: "line.3.horizontal")
+                    .renderingMode(.template)
+                    .foregroundStyle(Color.primary)
+            }
         }
     }
 }
