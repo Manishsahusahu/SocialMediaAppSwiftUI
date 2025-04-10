@@ -8,36 +8,28 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var selectedTab: TabType = .feed
+    
     var body: some View {
-        TabView {
-            Tab {
+        TabView(selection: $selectedTab) {
+            Tab("", systemImage: "house", value: .feed) {
                 FeedView()
-            } label: {
-                Image(systemName: "house")
             }
             
-            Tab {
-                Text("Search")
-            } label: {
-                Image(systemName: "magnifyingglass")
+            Tab("", systemImage: "magnifyingglass", value: .feed) {
+                SearchView()
             }
             
-            Tab {
-                Text("Post Upload")
-            } label: {
-                Image(systemName: "plus.square")
+            Tab("", systemImage: "plus.square", value: .feed) {
+                FeedView()
             }
             
-            Tab {
-                Text("Notifications")
-            } label: {
-                Image(systemName: "heart")
+            Tab("", systemImage: "heart", value: .feed) {
+                FeedView()
             }
             
-            Tab {
+            Tab("", systemImage: "person", value: .feed) {
                 ProfileView()
-            } label: {
-                Image(systemName: "person")
             }
         }
         .tint(.primary)

@@ -16,7 +16,7 @@ struct FeedView: View {
                         FeedCell()
                     }
                 }
-                .padding(.bottom)
+                .padding(.vertical)
             }
             .scrollIndicators(.hidden)
             .navigationTitle("Feed")
