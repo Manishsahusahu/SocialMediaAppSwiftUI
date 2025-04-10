@@ -17,7 +17,7 @@ struct CellFooterView: View {
                 .padding(.top, 1)
             
             HStack {
-                Text("Don Manish ")
+                Text("\(Strings.ManishSahu) ")
                     .fontWeight(.semibold) +
                 Text("This is some test caption for post.")
             }
