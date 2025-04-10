@@ -21,14 +21,14 @@ struct ProfileView: View {
 
 private struct HeaderView: View {
     var body: some View {
-        HStack {
-            VStack {
+        VStack {
+            HStack {
                 Circle()
                     .fill(Color.gray)
                     .frame(width: 42, height: 42)
-                
-                Text("Don Manish")
             }
+            
+            NameAndBioView()
         }
     }
 }
@@ -40,6 +40,26 @@ private struct EditProfileButton: View {
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.primary)
+                .padding(.vertical, 8)
+        }
+        .frame(maxWidth: .infinity)
+        .overlay {
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.gray, lineWidth: 1)
+        }
+        .padding(16)
+    }
+}
+
+private struct NameAndBioView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Don Manish")
+                .font(.footnote)
+                .fontWeight(.semibold)
+            
+            Text("Software Engineer")
+                .font(.footnote)
         }
     }
 }
