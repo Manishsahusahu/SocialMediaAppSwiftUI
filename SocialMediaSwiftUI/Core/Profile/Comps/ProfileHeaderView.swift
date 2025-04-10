@@ -11,9 +11,7 @@ struct ProfileHeaderView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Circle()
-                    .fill(Color.gray)
-                    .frame(width: 80, height: 80)
+                ProfileImageView(size: .large)
                 
                 Spacer().frame(width: 30)
                 
