@@ -9,13 +9,14 @@ import SwiftUI
 
 struct FeedCellActionButtons: View {
     var body: some View {
-        HStack {
-            ActionButtonView(icon: "heart") {}
+        HStack(spacing: 20) {
+            ActionButtonView(icon: ImageName.heart) {}
             
-            ActionButtonView(icon: "bubble.right") {}
+            ActionButtonView(icon: ImageName.comment) {}
             
-            ActionButtonView(icon: "paperplane") {}
+            ActionButtonView(icon: ImageName.share) {}
         }
+        .padding(.horizontal)
     }
 }
 
@@ -26,6 +27,8 @@ private struct ActionButtonView: View {
     var body: some View {
         Button { onClick() } label: {
             Image(systemName: icon)
+                .imageScale(.large)
+                .foregroundStyle(Color.primary)
         }
     }
 }
