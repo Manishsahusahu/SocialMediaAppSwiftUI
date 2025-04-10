@@ -16,7 +16,7 @@ struct FeedCellActionButtons: View {
             
             ActionButtonView(icon: ImageName.share) {}
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
     }
 }
 

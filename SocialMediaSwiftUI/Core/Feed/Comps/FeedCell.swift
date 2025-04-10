@@ -15,6 +15,8 @@ struct FeedCell: View {
             CellMediaView()
             
             FeedCellActionButtons()
+            
+            CellFooterView()
         }
     }
 }
@@ -28,7 +30,7 @@ private struct CellHeader: View {
                 .font(.footnote)
                 .fontWeight(.semibold)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
     }
 }
 
