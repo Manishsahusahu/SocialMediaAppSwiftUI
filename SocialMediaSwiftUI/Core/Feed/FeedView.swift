@@ -9,14 +9,36 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(0 ..< 20, id: \.self) { _ in
-                    FeedCell()
+        NavigationStack {
+            ScrollView {
+                LazyVStack(spacing: 32) {
+                    ForEach(0 ..< 20, id: \.self) { _ in
+                        FeedCell()
+                    }
                 }
+                .padding(.bottom)
             }
-            .padding(.vertical)
+            .scrollIndicators(.hidden)
+            .navigationTitle("Feed")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                leadingToolbarContent
+                trailingToolbarContent
+            }
         }
-        .scrollIndicators(.hidden)
+    }
+    
+    private var leadingToolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Text("DonManish")
+                .font(.headline)
+                .fontWeight(.bold)
+        }
+    }
+    
+    private var trailingToolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Image(systemName: ImageName.share)
+        }
     }
 }
