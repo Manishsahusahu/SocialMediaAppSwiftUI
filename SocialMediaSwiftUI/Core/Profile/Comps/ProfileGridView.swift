@@ -19,7 +19,7 @@ struct ProfileGridView: View {
             ForEach(0..<20, id: \.self) { _ in
                 Rectangle()
                     .fill(Color.blue)
-                    .frame(height: 100)
+                    .frame(height: 140)
             }
         }
     }

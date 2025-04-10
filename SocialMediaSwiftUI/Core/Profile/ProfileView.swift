@@ -11,12 +11,13 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
+                VStack(spacing: 20) {
                     ProfileHeaderView()
                     
                     ProfileGridView()
                 }
             }
+            .scrollIndicators(.hidden)
         }
     }
 }

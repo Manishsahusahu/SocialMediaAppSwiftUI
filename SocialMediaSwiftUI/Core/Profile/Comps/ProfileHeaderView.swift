@@ -66,7 +66,7 @@ private struct StatsView: View {
             
             Spacer()
             
-            StatView(label: "1M", value: "Followers")
+            StatView(label: "1.1M", value: "Followers")
             
             Spacer()
             
