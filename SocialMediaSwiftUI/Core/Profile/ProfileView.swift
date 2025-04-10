@@ -21,15 +21,20 @@ struct ProfileView: View {
 
 private struct HeaderView: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Circle()
                     .fill(Color.gray)
-                    .frame(width: 42, height: 42)
+                    .frame(width: 80, height: 80)
+                
+                Spacer().frame(width: 30)
+                
+                StatsView()
             }
             
             NameAndBioView()
         }
+        .padding(.horizontal)
     }
 }
 
@@ -59,6 +64,38 @@ private struct NameAndBioView: View {
                 .fontWeight(.semibold)
             
             Text("Software Engineer")
+                .font(.footnote)
+        }
+    }
+}
+
+private struct StatsView: View {
+    var body: some View {
+        HStack(spacing: 0) {
+            StatView(label: "30", value: "Posts")
+            
+            Spacer()
+            
+            StatView(label: "1M", value: "Followers")
+            
+            Spacer()
+            
+            StatView(label: "2", value: "Following")
+        }
+    }
+}
+
+private struct StatView: View {
+    let label: String
+    let value: String
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(label)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+            
+            Text(value)
                 .font(.footnote)
         }
     }
