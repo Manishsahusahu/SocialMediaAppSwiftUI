@@ -13,6 +13,8 @@ struct FeedCell: View {
             CellHeader()
             
             CellMediaView()
+            
+            FeedCellActionButtons()
         }
     }
 }
@@ -36,8 +38,4 @@ private struct CellMediaView: View {
             .fill(Color.primary.opacity(0.3))
             .frame(width: .infinity, height: 300)
     }
-}
-
-#Preview {
-    FeedCell()
 }
