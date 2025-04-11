@@ -9,10 +9,20 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        VStack {
-            HeaderView()
-            
-            InputFields()
+        NavigationStack {
+            VStack {
+                Spacer()
+                
+                HeaderView()
+                
+                InputFields()
+                
+                Spacer()
+                
+                Divider()
+                
+                SignUpAction()
+            }
         }
     }
 }
@@ -32,13 +42,20 @@ private struct InputFields: View {
     var body: some View {
         VStack {
             TextField("Enter your Email", text: $email)
-                .modifier(TextFieldModifier()) 
+                .modifier(TextFieldModifier())
             
             SecureField("Password", text: $password)
                 .modifier(TextFieldModifier())
             
-            Button(action: { }) {
+            Button {} label: {
                 Text("Login")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color(.systemBlue))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding()
         }
@@ -54,6 +71,23 @@ private struct TextFieldModifier: ViewModifier {
             .background(Color(.systemGray6))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal, 24)
+    }
+}
+
+private struct SignUpAction: View {
+    var body: some View {
+        NavigationLink {
+            Text("Sign Up")
+        } label: {
+            HStack(spacing: 3) {
+                Text("Don't have an account?")
+                
+                Text("Sign Up")
+                    .fontWeight(.semibold)
+            }
+            .font(.footnote)
+        }
+        .padding(.vertical)
     }
 }
 
