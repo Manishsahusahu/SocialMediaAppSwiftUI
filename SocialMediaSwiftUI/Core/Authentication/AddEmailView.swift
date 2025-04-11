@@ -16,7 +16,9 @@ struct AddEmailView: View {
             label: "Email",
             infoText: Strings.youWillUseThisEmail,
             text: $email
-        )
+        ) {
+            CreateUserNameView()
+        }
     }
 }
 

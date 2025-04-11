@@ -16,7 +16,9 @@ struct CreateUserNameView: View {
             label: "Name",
             infoText: Strings.youWillUseUserName,
             text: $name
-        )
+        ) {
+            EmptyView()
+        }
     }
 }
 

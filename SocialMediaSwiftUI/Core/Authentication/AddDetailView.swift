@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct AddDetailView: View {
+struct AddDetailView<Content: View>: View {
     let title: String
     let label: String
     let infoText: String
     @Binding var text: String
+    let childView: () -> Content
     
     var body: some View {
         VStack(spacing: 12) {
@@ -36,7 +37,7 @@ struct AddDetailView: View {
                 .padding(.top)
             
             NavigationLink {
-                CreateUserNameView()
+                childView()
             } label: {
                 Text(Strings.next)
                     .font(.subheadline)

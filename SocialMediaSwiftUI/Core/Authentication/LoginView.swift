@@ -77,7 +77,7 @@ private struct TextFieldModifier: ViewModifier {
 private struct SignUpAction: View {
     var body: some View {
         NavigationLink {
-            Text("Sign Up")
+            AddEmailView()
         } label: {
             HStack(spacing: 3) {
                 Text("Don't have an account?")
