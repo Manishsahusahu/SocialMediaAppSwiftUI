@@ -12,4 +12,8 @@ struct Strings {
     static let addYourEmail = "Add your email"
     static let youWillUseThisEmail = "You will use this email to sign in to your account."
     static let email = "Email"
+    static let login = "Login"
+    static let next = "Next"
+    static let youWillUseUserName = "Pick a username for your new account. You can always change it later."
+    static let createUserName = "Create username"
 }
