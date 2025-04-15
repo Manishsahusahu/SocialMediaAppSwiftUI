@@ -12,6 +12,8 @@ struct UploadPostView: View {
         VStack {
             UploadPostToolbarView()
             
+            CreatePostView() 
+            
             Spacer()
         }
     }
