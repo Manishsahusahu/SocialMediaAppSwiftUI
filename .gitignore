@@ -1,3 +1,2 @@
 # Xcode workspace/user data
-*.xcworkspace/xcuserdata/
-*.xcodeproj/xcuserdata/
+xcuserdata
