@@ -9,9 +9,10 @@ import SwiftUI
 import PhotosUI
 
 struct CreatePostView: View {
+    @ObservedObject var viewModel: UploadPostViewModel
+    
     @State private var caption: String = ""
     @State private var isImagePickerPresented: Bool = false
-    @State private var photoItem: PhotosPickerItem? = nil
     
     var body: some View {
         HStack(spacing: 8) {
@@ -31,7 +32,7 @@ struct CreatePostView: View {
         }
         .photosPicker(
             isPresented: $isImagePickerPresented,
-            selection: $photoItem
+            selection: $viewModel.selectedImage
         )
     }
 }

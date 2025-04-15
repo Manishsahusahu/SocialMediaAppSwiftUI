@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct UploadPostView: View {
+    @StateObject private var viewModel = UploadPostViewModel()
+    
     var body: some View {
         VStack {
             UploadPostToolbarView()
             
-            CreatePostView() 
+            CreatePostView(viewModel: viewModel) 
             
             Spacer()
         }
