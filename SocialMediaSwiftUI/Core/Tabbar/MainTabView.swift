@@ -13,22 +13,22 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("", systemImage: "house", value: .feed) {
-                FeedView()
+                FeedView(posts: Post.MOCK_POSTS)
             }
             
-            Tab("", systemImage: "magnifyingglass", value: .feed) {
+            Tab("", systemImage: "magnifyingglass", value: .search) {
                 SearchView()
             }
             
-            Tab("", systemImage: "plus.square", value: .feed) {
-                FeedView()
+            Tab("", systemImage: "plus.square", value: .createPost) {
+                Text("Upload")
             }
             
-            Tab("", systemImage: "heart", value: .feed) {
-                FeedView()
+            Tab("", systemImage: "heart", value: .notifications) {
+                Text("Notifications")
             }
             
-            Tab("", systemImage: "person", value: .feed) {
+            Tab("", systemImage: "person", value: .profile) {
                 CurrentUserProfileView(user: User.MOCK_USERS[0])
             }
         }

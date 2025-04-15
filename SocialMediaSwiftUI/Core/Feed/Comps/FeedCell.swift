@@ -8,25 +8,35 @@
 import SwiftUI
 
 struct FeedCell: View {
+    let post: Post
+    
     var body: some View {
         VStack(alignment: .leading) {
-            CellHeader()
+            if let user = post.user {
+                CellHeader(username: user.username)
+            }
             
             CellMediaView()
             
             FeedCellActionButtons()
             
-            CellFooterView()
+            CellFooterView(
+                likes: post.likes,
+                caption: post.caption,
+                fullname: post.user?.fullName ?? ""
+            )
         }
     }
 }
 
 private struct CellHeader: View {
+    let username: String
+    
     var body: some View {
         HStack {
             ProfileImageView(size: .small)
             
-            Text("Don Manish")
+            Text(username)
                 .font(.footnote)
                 .fontWeight(.semibold)
         }
@@ -38,6 +48,7 @@ private struct CellMediaView: View {
     var body: some View {
         Rectangle()
             .fill(Color.primary.opacity(0.3))
-            .frame(width: .infinity, height: 300)
+            .frame(maxWidth: .infinity)
+            .frame(height: 300)
     }
 }

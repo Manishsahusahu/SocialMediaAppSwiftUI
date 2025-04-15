@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct CellFooterView: View {
+    let likes: Int
+    let caption: String
+    let fullname: String
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("2.2M likes")
+            Text("\(likes) likes")
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .padding(.horizontal, 8)
                 .padding(.top, 1)
             
             HStack {
-                Text("\(Strings.ManishSahu) ")
+                Text("\(fullname) ")
                     .fontWeight(.semibold) +
-                Text("This is some test caption for post.")
+                Text(caption)
             }
             .font(.footnote)
             .padding(.horizontal, 8)
