@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @StateObject private var viewModel = LoginViewModel()
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -15,7 +17,7 @@ struct LoginView: View {
                 
                 HeaderView()
                 
-                InputFields()
+                InputFields(viewModel: viewModel)
                 
                 Spacer()
                 
@@ -36,19 +38,20 @@ private struct HeaderView: View {
 }
 
 private struct InputFields: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @ObservedObject var viewModel: LoginViewModel
     
     var body: some View {
         VStack {
-            TextField("Enter your Email", text: $email)
+            TextField(Strings.enterYourEmail, text: $viewModel.email)
                 .modifier(TextFieldModifier())
             
-            SecureField("Password", text: $password)
+            SecureField(Strings.password, text: $viewModel.password)
                 .modifier(TextFieldModifier())
             
-            Button {} label: {
-                Text("Login")
+            Button {
+                viewModel.login()
+            } label: {
+                Text(Strings.login)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
@@ -80,9 +83,9 @@ private struct SignUpAction: View {
             AddEmailView()
         } label: {
             HStack(spacing: 3) {
-                Text("Don't have an account?")
+                Text(Strings.donthaveaccount)
                 
-                Text("Sign Up")
+                Text(Strings.signup)
                     .fontWeight(.semibold)
             }
             .font(.footnote)

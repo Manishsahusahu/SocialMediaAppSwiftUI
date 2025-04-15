@@ -11,6 +11,7 @@ struct Strings {
     static let ManishSahu = "Manish Sahu"
     
     // Authentication
+    static let enterYourEmail = "Enter your email"
     static let addYourEmail = "Add your email"
     static let youWillUseThisEmail = "You will use this email to sign in to your account."
     static let email = "Email"
@@ -21,6 +22,8 @@ struct Strings {
     static let createUserName = "Create username"
     static let createPassword = "Create password"
     static let password = "Password"
+    static let donthaveaccount = "Don't have an account?"
+    static let signup = "Sign up"
     
     // Upload Post
     static let upload = "Upload"
