@@ -14,11 +14,14 @@ struct SearchView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
-                    ForEach(0..<10, id: \.self) { _ in
+                    ForEach(User.MOCK_USERS) { user in
                         HStack {
                             ProfileImageView(size: .small)
                             
-                            profileMetaView()
+                            profileMetaView(
+                                username: user.username,
+                                fullName: user.fullName ?? ""
+                            )
                         }
                     }
                 }
@@ -33,12 +36,15 @@ struct SearchView: View {
 }
 
 private struct profileMetaView: View {
+    let username: String
+    let fullName: String
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Don Manish")
+            Text(username)
                 .fontWeight(.semibold)
                 
-            Text("Software Engineer")
+            Text(fullName)
         }
         .font(.footnote)
     }
