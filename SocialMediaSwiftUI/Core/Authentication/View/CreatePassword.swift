@@ -14,7 +14,7 @@ struct CreatePassword: View {
         AddDetailView(
             isPasswordField: true,
             title: Strings.createPassword,
-            label: Strings.next,
+            label: Strings.password,
             infoText: Strings.passwordMustBe6CharsLong,
             text: $viewModel.password
         ) {

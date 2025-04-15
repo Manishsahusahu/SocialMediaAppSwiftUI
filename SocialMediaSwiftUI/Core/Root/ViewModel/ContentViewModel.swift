@@ -25,7 +25,9 @@ class ContentViewModel: ObservableObject {
     }
     
     private func setupPublisher() {
-        authService.$userSession.sink { [weak self] userSession in
+        authService.$userSession
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] userSession in
             self?.userSession = userSession
         }
         .store(in: &cancellables)

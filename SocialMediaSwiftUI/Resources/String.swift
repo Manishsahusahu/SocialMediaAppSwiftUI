@@ -20,6 +20,7 @@ struct Strings {
     static let passwordMustBe6CharsLong = "Your password must be atleast 6 characters long"
     static let createUserName = "Create username"
     static let createPassword = "Create password"
+    static let password = "Password"
     
     // Upload Post
     static let upload = "Upload"
