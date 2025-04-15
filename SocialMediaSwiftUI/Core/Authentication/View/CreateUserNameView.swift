@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct CreateUserNameView: View {
-    @State var name: String = ""
+    @EnvironmentObject var viewModel: RegistrationViewModel
     
     var body: some View {
         AddDetailView(
             title: Strings.createUserName,
             label: "Name",
             infoText: Strings.youWillUseUserName,
-            text: $name
+            text: $viewModel.username
         ) {
-            EmptyView()
+            CompleteSignUpView()
         }
     }
 }

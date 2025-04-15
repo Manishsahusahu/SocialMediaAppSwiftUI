@@ -20,6 +20,10 @@ class ContentViewModel: ObservableObject {
         setupPublisher()
     }
     
+    var isLoggedIn: Bool {
+        userSession != nil
+    }
+    
     private func setupPublisher() {
         authService.$userSession.sink { [weak self] userSession in
             self?.userSession = userSession

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CompleteSignUpView: View {
+    @EnvironmentObject private var viewModel: RegistrationViewModel
+    
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
@@ -23,7 +25,11 @@ struct CompleteSignUpView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             
-            Button {} label: {
+            Button {
+                Task {
+                    await viewModel.createUser()
+                }
+            } label: {
                 Text("Complete Sign Up")
                     .font(.subheadline)
                     .fontWeight(.semibold)
