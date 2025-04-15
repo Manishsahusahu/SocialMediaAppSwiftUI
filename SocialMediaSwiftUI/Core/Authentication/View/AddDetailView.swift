@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddDetailView<Content: View>: View {
+    var isPasswordField = false
     let title: String
     let label: String
     let infoText: String
@@ -27,14 +28,24 @@ struct AddDetailView<Content: View>: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             
-            TextField(label, text: $text)
-                .textInputAutocapitalization(.none)
-                .font(.subheadline)
-                .padding(12)
-                .background(Color(.systemGray6))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal, 24)
-                .padding(.top)
+            if isPasswordField {
+                SecureField(label, text: $text)
+                    .font(.subheadline)
+                    .padding(12)
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.horizontal, 24)
+                    .padding(.top)
+            } else {
+                TextField(label, text: $text)
+                    .textInputAutocapitalization(.none)
+                    .font(.subheadline)
+                    .padding(12)
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.horizontal, 24)
+                    .padding(.top)
+            }
             
             NavigationLink {
                 childView()

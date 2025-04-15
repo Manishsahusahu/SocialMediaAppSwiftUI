@@ -17,7 +17,9 @@ struct Strings {
     static let login = "Login"
     static let next = "Next"
     static let youWillUseUserName = "Pick a username for your new account. You can always change it later."
+    static let passwordMustBe6CharsLong = "Your password must be atleast 6 characters long"
     static let createUserName = "Create username"
+    static let createPassword = "Create password"
     
     // Upload Post
     static let upload = "Upload"

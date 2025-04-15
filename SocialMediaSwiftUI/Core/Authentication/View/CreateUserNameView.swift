@@ -13,11 +13,11 @@ struct CreateUserNameView: View {
     var body: some View {
         AddDetailView(
             title: Strings.createUserName,
-            label: "Name",
+            label: Strings.next,
             infoText: Strings.youWillUseUserName,
             text: $viewModel.username
         ) {
-            CompleteSignUpView()
+            CreatePassword()
         }
     }
 }
