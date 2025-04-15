@@ -29,7 +29,7 @@ struct MainTabView: View {
             }
             
             Tab("", systemImage: "person", value: .feed) {
-                ProfileView()
+                CurrentUserProfileView()
             }
         }
         .tint(.primary)

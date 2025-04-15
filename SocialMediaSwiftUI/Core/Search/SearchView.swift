@@ -15,13 +15,16 @@ struct SearchView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
                     ForEach(User.MOCK_USERS) { user in
-                        HStack {
-                            ProfileImageView(size: .small)
-                            
-                            profileMetaView(
-                                username: user.username,
-                                fullName: user.fullName ?? ""
-                            )
+                        NavigationLink(value: user) {
+                            HStack {
+                                ProfileImageView(size: .small)
+                                
+                                profileMetaView(
+                                    username: user.username,
+                                    fullName: user.fullName ?? ""
+                                )
+                            }
+                            .foregroundStyle(Color.primary)
                         }
                     }
                 }
@@ -31,6 +34,9 @@ struct SearchView: View {
             .scrollIndicators(.hidden )
             .navigationTitle("Explore")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: User.self) { user in
+                ProfileView()
+            }
         }
     }
 }

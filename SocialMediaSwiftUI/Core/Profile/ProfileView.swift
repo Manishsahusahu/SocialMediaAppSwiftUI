@@ -9,20 +9,18 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    ProfileHeaderView()
-                    
-                    ProfileGridView()
-                }
+        ScrollView {
+            VStack(spacing: 20) {
+                ProfileHeaderView()
+                
+                ProfileGridView()
             }
-            .scrollIndicators(.hidden)
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                toolbarContent
-            }
+        }
+        .scrollIndicators(.hidden)
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            toolbarContent
         }
     }
     
