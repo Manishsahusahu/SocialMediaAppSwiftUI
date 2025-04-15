@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 class AuthService: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
@@ -25,6 +26,7 @@ class AuthService: ObservableObject {
     func createUser(email: String, password: String, username: String) async throws {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
         self.userSession = result.user
+        await uploadUserData(uid: result.user.uid, name: username, email: email)
     }
     
     func loadUserData() async throws {
@@ -34,5 +36,12 @@ class AuthService: ObservableObject {
     func signOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
+    }
+    
+    private func uploadUserData(uid: String, name: String, email: String) async {
+        let user = User(id: uid, username: name, email: email)
+        guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
+        
+        try? await Firestore.firestore().collection("users").document(uid).setData(encodedUser)
     }
 }
