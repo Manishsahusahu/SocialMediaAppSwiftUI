@@ -16,9 +16,15 @@ struct CreatePostView: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            Rectangle()
-                .fill(Color(.systemGray))
-                .frame(width: 100, height: 100)
+            Group {
+                if let image = viewModel.image {
+                    image
+                        .resizable()
+                } else {
+                    Color(.systemGray)
+                }
+            }
+            .frame(width: 100, height: 100)
             
             TextField(
                 "Enter your caption...",

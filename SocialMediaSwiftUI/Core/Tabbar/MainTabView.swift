@@ -21,7 +21,7 @@ struct MainTabView: View {
             }
             
             Tab("", systemImage: "plus.square", value: .createPost) {
-                Text("Upload")
+                UploadPostView()
             }
             
             Tab("", systemImage: "heart", value: .notifications) {
