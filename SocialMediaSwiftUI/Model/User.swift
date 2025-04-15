@@ -32,7 +32,7 @@ extension User {
             profileImageUrl: "https://example.com/profile.jpg",
             fullName: "Bruce Wayne",
             bio: "Gotham's Dark knight",
-            email: "manishsahu@example.com"
+            email: "batman@example.com"
         ),
         .init(
             id: UUID().uuidString,
@@ -40,7 +40,7 @@ extension User {
             profileImageUrl: "https://example.com/profile.jpg",
             fullName: "Eddie Brock",
             bio: "Venom",
-            email: "manishsahu@example.com"
+            email: "venom@example.com"
         ),
         .init(
             id: UUID().uuidString,
@@ -48,7 +48,7 @@ extension User {
             profileImageUrl: "https://example.com/profile.jpg",
             fullName: "Tony Stark",
             bio: "Billionaire",
-            email: "manishsahu@example.com"
+            email: "ironman@example.com"
         ),
         .init(
             id: UUID().uuidString,
@@ -56,7 +56,15 @@ extension User {
             profileImageUrl: "https://example.com/profile.jpg",
             fullName: "Peter Parker",
             bio: "Hanging creature",
-            email: "manishsahu@example.com"
+            email: "spiderman@example.com"
+        ),
+        .init(
+            id: UUID().uuidString,
+            username: "black-panther",
+            profileImageUrl: "https://example.com/profile.jpg",
+            fullName: "Black Panther",
+            bio: "Wakanda",
+            email: "black_panther@example.com"
         ),
     ]
 }
