@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12DFC6162DAE4F3C007D1FD0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DFC6152DAE4F3C007D1FD0 /* User.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		120FAC302DA4C05A002BE8CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		120FAC1F2DA4C058002BE8CF /* SocialMediaSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMediaSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		120FAC2F2DA4C05A002BE8CF /* SocialMediaSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialMediaSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		120FAC392DA4C05A002BE8CF /* SocialMediaSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialMediaSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12DFC6152DAE4F3C007D1FD0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		120FAC162DA4C058002BE8CF = {
 			isa = PBXGroup;
 			children = (
+				12DFC6152DAE4F3C007D1FD0 /* User.swift */,
 				120FAC212DA4C058002BE8CF /* SocialMediaSwiftUI */,
 				120FAC322DA4C05A002BE8CF /* SocialMediaSwiftUITests */,
 				120FAC3C2DA4C05A002BE8CF /* SocialMediaSwiftUIUITests */,
@@ -236,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12DFC6162DAE4F3C007D1FD0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
