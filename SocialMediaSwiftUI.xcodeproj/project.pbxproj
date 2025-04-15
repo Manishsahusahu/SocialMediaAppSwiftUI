@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12DFC62B2DAE8784007D1FD0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 12DFC62A2DAE8784007D1FD0 /* FirebaseAuth */; };
+		12DFC62D2DAE8784007D1FD0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 12DFC62C2DAE8784007D1FD0 /* FirebaseFirestore */; };
+		12DFC62F2DAE8784007D1FD0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 12DFC62E2DAE8784007D1FD0 /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		120FAC302DA4C05A002BE8CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12DFC62B2DAE8784007D1FD0 /* FirebaseAuth in Frameworks */,
+				12DFC62D2DAE8784007D1FD0 /* FirebaseFirestore in Frameworks */,
+				12DFC62F2DAE8784007D1FD0 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +121,9 @@
 			);
 			name = SocialMediaSwiftUI;
 			packageProductDependencies = (
+				12DFC62A2DAE8784007D1FD0 /* FirebaseAuth */,
+				12DFC62C2DAE8784007D1FD0 /* FirebaseFirestore */,
+				12DFC62E2DAE8784007D1FD0 /* FirebaseStorage */,
 			);
 			productName = SocialMediaSwiftUI;
 			productReference = 120FAC1F2DA4C058002BE8CF /* SocialMediaSwiftUI.app */;
@@ -195,6 +207,9 @@
 			);
 			mainGroup = 120FAC162DA4C058002BE8CF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				12DFC6292DAE8784007D1FD0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 120FAC202DA4C058002BE8CF /* Products */;
 			projectDirPath = "";
@@ -409,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = color.SocialMediaSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = "--color.SocialMediaSwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -438,7 +453,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = color.SocialMediaSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = "--color.SocialMediaSwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -554,6 +569,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		12DFC6292DAE8784007D1FD0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12DFC62A2DAE8784007D1FD0 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12DFC6292DAE8784007D1FD0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		12DFC62C2DAE8784007D1FD0 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12DFC6292DAE8784007D1FD0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		12DFC62E2DAE8784007D1FD0 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12DFC6292DAE8784007D1FD0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 120FAC172DA4C058002BE8CF /* Project object */;
 }

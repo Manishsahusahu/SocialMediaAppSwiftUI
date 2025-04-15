@@ -8,7 +8,8 @@
 import SwiftUI
 
 @main
-struct SocialMediaSwiftUIApp: App {
+struct SocialMediaSwiftUIApp: App { @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
