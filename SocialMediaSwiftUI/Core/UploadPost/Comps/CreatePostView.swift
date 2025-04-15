@@ -11,7 +11,6 @@ import PhotosUI
 struct CreatePostView: View {
     @ObservedObject var viewModel: UploadPostViewModel
     
-    @State private var caption: String = ""
     @State private var isImagePickerPresented: Bool = false
     
     var body: some View {
@@ -28,7 +27,7 @@ struct CreatePostView: View {
             
             TextField(
                 "Enter your caption...",
-                text: $caption,
+                text: $viewModel.caption,
                 axis: .vertical
             )
         }

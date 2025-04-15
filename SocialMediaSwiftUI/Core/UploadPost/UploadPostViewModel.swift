@@ -10,6 +10,7 @@ import PhotosUI
 import SwiftUI
 
 class UploadPostViewModel: ObservableObject {
+    @Published var caption: String = ""
     @Published var image: Image?
     @Published var selectedImage: PhotosPickerItem? {
         didSet {
@@ -25,6 +26,11 @@ class UploadPostViewModel: ObservableObject {
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: data) else { return }
         
+        await setImage(uiImage: uiImage)
+    }
+    
+    @MainActor
+    private func setImage(uiImage: UIImage) {
         self.image = Image(uiImage: uiImage)
     }
 }

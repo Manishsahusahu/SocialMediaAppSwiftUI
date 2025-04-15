@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct UploadPostToolbarView: View {
+    let cancel: () -> Void
+    
     var body: some View {
         HStack {
-            Button {} label: {
+            Button { cancel() } label: {
                 Text(Strings.cancel)
             }
             

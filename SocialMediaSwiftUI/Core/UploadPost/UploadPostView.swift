@@ -12,9 +12,13 @@ struct UploadPostView: View {
     
     var body: some View {
         VStack {
-            UploadPostToolbarView()
+            UploadPostToolbarView() {
+                viewModel.image = nil
+                viewModel.selectedImage = nil
+                
+            }
             
-            CreatePostView(viewModel: viewModel) 
+            CreatePostView(viewModel: viewModel)
             
             Spacer()
         }
