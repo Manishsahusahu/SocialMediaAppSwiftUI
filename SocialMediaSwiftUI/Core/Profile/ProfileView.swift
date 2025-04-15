@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ProfileView: View {
+    let user: User
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ProfileHeaderView()
+                ProfileHeaderView(user: user)
                 
                 ProfileGridView()
             }
         }
         .scrollIndicators(.hidden)
-        .navigationTitle("Profile")
+        .navigationTitle(user.username)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             toolbarContent
@@ -37,5 +39,5 @@ struct ProfileView: View {
 
 
 #Preview {
-    ProfileView()
+    ProfileView(user: User.MOCK_USERS[0])
 }

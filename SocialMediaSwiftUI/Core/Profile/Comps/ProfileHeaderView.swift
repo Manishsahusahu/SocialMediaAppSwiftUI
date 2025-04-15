@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
+    let user: User
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -18,7 +20,7 @@ struct ProfileHeaderView: View {
                 StatsView()
             }
             
-            NameAndBioView()
+            NameAndBioView(fullName: user.fullName, bio: user.bio)
             
             EditProfileButton()
         }
@@ -45,14 +47,21 @@ private struct EditProfileButton: View {
 }
 
 private struct NameAndBioView: View {
+    let fullName: String?
+    let bio: String?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("Don Manish")
-                .font(.footnote)
-                .fontWeight(.semibold)
+            if let fullName {
+                Text(fullName)
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+            }
             
-            Text("Software Engineer")
-                .font(.footnote)
+            if let bio {
+                Text(bio)
+                    .font(.footnote)
+            }
         }
     }
 }

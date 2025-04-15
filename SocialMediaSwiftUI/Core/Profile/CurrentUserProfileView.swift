@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CurrentUserProfileView: View {
+    let user: User
+    
     var body: some View {
         NavigationStack {
-            ProfileView()
+            ProfileView(user: user)
         }
     }
 }
