@@ -11,18 +11,18 @@ struct UploadPostToolbarView: View {
     var body: some View {
         HStack {
             Button {} label: {
-                Text("Cancel")
+                Text(Strings.cancel)
             }
             
             Spacer()
             
-            Text("New Post")
+            Text(Strings.newPost)
                 .fontWeight(.semibold)
             
             Spacer()
             
             Button {} label: {
-                Text("Upload")
+                Text(Strings.upload)
                     .fontWeight(.semibold)
             }
         }
