@@ -28,6 +28,7 @@ class AuthService: ObservableObject {
     func login(withEmail email: String, password: String) async throws {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
         self.userSession = result.user
+        try await loadUserData() 
     }
     
     func createUser(email: String, password: String, username: String) async throws {
