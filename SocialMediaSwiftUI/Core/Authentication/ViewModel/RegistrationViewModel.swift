@@ -19,6 +19,10 @@ class RegistrationViewModel: ObservableObject {
                 password: password,
                 username: username
             )
+            
+            email = ""
+            password = ""
+            username = ""
         } catch {
             print("Registration failed: \(error.localizedDescription)")
         }

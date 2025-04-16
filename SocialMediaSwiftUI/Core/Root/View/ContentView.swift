@@ -12,8 +12,8 @@ struct ContentView: View {
     @StateObject private var registrationViewModel = RegistrationViewModel()
     
     var body: some View {
-        if viewModel.isLoggedIn {
-            MainTabView()
+        if viewModel.isLoggedIn, let user = viewModel.user {
+            MainTabView(user: user)
         } else {
             LoginView()
                 .environmentObject(registrationViewModel)

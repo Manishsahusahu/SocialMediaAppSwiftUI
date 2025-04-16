@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    let user: User
+    
     @State private var selectedTab: TabType = .feed
     
     var body: some View {
@@ -29,7 +31,7 @@ struct MainTabView: View {
             }
             
             Tab("", systemImage: "person", value: .profile) {
-                CurrentUserProfileView(user: User.MOCK_USERS[0])
+                CurrentUserProfileView(user: user)
             }
         }
         .tint(.primary)
@@ -37,5 +39,5 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView()
+    MainTabView(user: User.MOCK_USERS[0])
 }
