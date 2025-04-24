@@ -12,7 +12,7 @@ struct UploadPostView: View {
     
     var body: some View {
         VStack {
-            UploadPostToolbarView(
+            ToolbarView(
                 leadingText: Strings.cancel,
                 trailingText: Strings.upload,
                 principalText: Strings.newPost

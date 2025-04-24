@@ -1,13 +1,13 @@
 //
-//  UploadPostToolbarView.swift
+//  ToolbarView.swift
 //  SocialMediaSwiftUI
 //
-//  Created by Manish sahu on 15/04/25.
+//  Created by Manish sahu on 24/04/25.
 //
 
 import SwiftUI
 
-struct UploadPostToolbarView: View {
+struct ToolbarView: View {
     let leadingText: String
     let trailingText: String
     let principalText: String
