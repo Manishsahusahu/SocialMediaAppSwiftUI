@@ -34,4 +34,5 @@ struct Strings {
     // Profile
     static let follow = "Follow"
     static let editProfile = "Edit Profile"
+    static let editProfilePicture = "Edit profile picture"
 }
