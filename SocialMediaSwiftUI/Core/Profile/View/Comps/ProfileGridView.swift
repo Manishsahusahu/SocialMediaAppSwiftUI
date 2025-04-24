@@ -1,0 +1,72 @@
+//
+//  ProfileGridView.swift
+//  SocialMediaSwiftUI
+//
+//  Created by Manish sahu on 10/04/25.
+//
+
+import SwiftUI
+
+struct ProfileGridView: View {
+    @State private var imageURL: String? = nil
+    
+    private let gridItems: [GridItem] = [
+        .init(.flexible(), spacing: 1),
+        .init(.flexible(), spacing: 1),
+        .init(.flexible(), spacing: 1)
+    ]
+    
+    @Namespace private var ProfileNamespace
+    
+    var body: some View {
+        LazyVGrid(columns: gridItems, spacing: 2) {
+            ForEach(testingURLs, id: \.self) { url in
+                NavigationLink(value: url) {
+                    AsyncImage(url: URL(string: url)) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 140, height: 140)
+                            .matchedTransitionSource(id: url, in: ProfileNamespace)
+                    } placeholder: {
+                        Rectangle()
+                            .fill(Color(.systemGray))
+                            .frame(width: 140, height: 140)
+                    }
+                }
+            }
+        }
+        .navigationDestination(for: String.self) { url in
+            ImageView(url: url)
+                .navigationTransition(.zoom(sourceID: url, in: ProfileNamespace))
+        }
+    }
+}
+
+private struct ImageView: View {
+    let url: String
+    
+    var body: some View {
+        ZStack {
+            AsyncImage(url: URL(string: url)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width)
+            } placeholder: {
+                Rectangle()
+                    .fill(Color(.systemGray))
+                    .frame(width: UIScreen.main.bounds.width)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+
+let testingURLs = [
+    "https://images.unsplash.com/photo-1742240216264-f0aac25ef4ba?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1743710426934-89887ca897d8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8",
+    "https://images.unsplash.com/photo-1744059510494-3e071c0b3596?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1744754222043-c337f2728640?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D"
+]
