@@ -7,8 +7,11 @@
 
 import SwiftUI
 import PhotosUI
+import Firebase
+import FirebaseFirestore
 
 class EditProfileViewModel: ObservableObject {
+    @Published var isLoading: Bool = false
     @Published var user: User
     @Published var selectedImage: PhotosPickerItem? {
         didSet {
@@ -32,6 +35,31 @@ class EditProfileViewModel: ObservableObject {
         
         await MainActor.run {
             self.profileImage = Image(uiImage: uiImage)
+        }
+    }
+    
+    func updateUserData() {
+        self.isLoading = true
+        var data: [String: Any] = .init()
+        
+        if !name.isEmpty, name != user.username {
+            data["fullName"] = name
+        }
+        if !bio.isEmpty, bio != user.bio {
+            data["bio"] = bio
+        }
+        
+        if !data.isEmpty {
+            Firestore.firestore().collection("users").document(user.id).updateData(data) { error in
+                switch error {
+                case .none:
+                    Task {
+                        try? await AuthService.shared.loadUserData()
+                    }
+                case .some(let error): print("Error updating user data: \(error)")
+                }
+                self.isLoading = false
+            }
         }
     }
 }

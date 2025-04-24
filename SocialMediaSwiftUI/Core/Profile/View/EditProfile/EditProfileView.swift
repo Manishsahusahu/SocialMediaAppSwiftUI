@@ -25,7 +25,9 @@ struct EditProfileView: View {
                 principalText: Strings.editProfile
             ) {
                 dismiss()
-            } trailingAction: {}
+            } trailingAction: {
+                viewModel.updateUserData()
+            }
             
             Spacer().frame(height: 16)
             
@@ -65,6 +67,20 @@ struct EditProfileView: View {
             TextFieldRowView(title: Strings.bio, placeholder: Strings.enterYourBio, value: $viewModel.bio)
             
             Spacer()
+        }
+        .onChange(of: viewModel.isLoading) { _, newValue in
+            if !newValue {
+                dismiss()
+            }
+        }
+        .overlay {
+            if viewModel.isLoading {
+                ZStack {
+                    ProgressView()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black.opacity(0.15))
+            }
         }
     }
 }
