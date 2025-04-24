@@ -9,8 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct EditProfileView: View {
-    @State private var selectedImage: PhotosPickerItem?
-    
+    @StateObject private var viewModel = EditProfileViewModel()
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -29,7 +28,7 @@ struct EditProfileView: View {
             
             Spacer().frame(height: 16)
             
-            PhotosPicker(selection: $selectedImage) {
+            PhotosPicker(selection: $viewModel.selectedImage) {
                 VStack {
                     Circle()
                         .fill(Color(.systemGray))
@@ -43,6 +42,12 @@ struct EditProfileView: View {
                 }
             }
             
+            Spacer().frame(height: 12)
+            
+            TextFieldRowView(title: Strings.name, placeholder: Strings.enterYourName, value: $viewModel.name)
+            
+            TextFieldRowView(title: Strings.bio, placeholder: Strings.enterYourBio, value: $viewModel.bio)
+            
             Spacer()
         }
     }
@@ -54,8 +59,18 @@ private struct TextFieldRowView: View {
     @Binding var value: String
     
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             Text(title)
+                .padding(.leading, 8)
+                .frame(width: 100, alignment: .leading)
+            
+            VStack {
+                TextField(placeholder, text: $value)
+                
+                Divider()
+            }
         }
+        .font(.subheadline)
+        .padding(.vertical, 8)
     }
 }

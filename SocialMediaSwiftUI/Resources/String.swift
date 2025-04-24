@@ -35,4 +35,8 @@ struct Strings {
     static let follow = "Follow"
     static let editProfile = "Edit Profile"
     static let editProfilePicture = "Edit profile picture"
+    static let name = "Name"
+    static let bio = "Bio"
+    static let enterYourName = "Enter your name.."
+    static let enterYourBio = "Enter your bio.."
 }
