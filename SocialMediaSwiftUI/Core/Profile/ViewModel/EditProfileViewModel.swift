@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 class EditProfileViewModel: ObservableObject {
+    @Published var user: User
     @Published var selectedImage: PhotosPickerItem? {
         didSet {
             Task {
@@ -19,6 +20,10 @@ class EditProfileViewModel: ObservableObject {
     @Published var profileImage: Image?
     @Published var name: String = ""
     @Published var bio: String = ""
+    
+    init(user: User) {
+        self.user = user
+    }
     
     func loadImage(from item: PhotosPickerItem?) async {
         guard let item else { return }

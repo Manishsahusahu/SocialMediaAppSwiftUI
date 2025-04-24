@@ -30,7 +30,7 @@ struct ProfileHeaderView: View {
         }
         .padding(.horizontal)
         .fullScreenCover(isPresented: $showEditProfileView) {
-            EditProfileView()
+            EditProfileView(user: user)
         }
     }
 }

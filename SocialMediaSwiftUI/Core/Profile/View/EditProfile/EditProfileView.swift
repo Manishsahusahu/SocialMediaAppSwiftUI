@@ -9,8 +9,13 @@ import SwiftUI
 import PhotosUI
 
 struct EditProfileView: View {
-    @StateObject private var viewModel = EditProfileViewModel()
+    @StateObject private var viewModel: EditProfileViewModel
+    
     @Environment(\.dismiss) private var dismiss
+    
+    init(user: User) {
+        self._viewModel = StateObject(wrappedValue: .init(user: user))
+    }
     
     var body: some View {
         VStack(spacing: 0) {
