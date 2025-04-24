@@ -10,8 +10,6 @@ import FirebaseFirestore
 import Firebase
 
 class UserService: ObservableObject {
-    @Published var users: [User] = []
-    
     static func fetchAllUsers() async throws ->  [User] {
         let snapshots = try await Firestore.firestore().collection("users").getDocuments()
     

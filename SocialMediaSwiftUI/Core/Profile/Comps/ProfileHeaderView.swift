@@ -22,25 +22,31 @@ struct ProfileHeaderView: View {
             
             NameAndBioView(fullName: user.fullName, bio: user.bio)
             
-            EditProfileButton()
+            EditProfileButton(isCurrentUser: user.isCurrentUser)
         }
         .padding(.horizontal)
     }
 }
 
 private struct EditProfileButton: View {
+    let isCurrentUser: Bool
+    
     var body: some View {
         ZStack {
-            Text("Edit Profile")
+            Text(isCurrentUser ? Strings.editProfile : Strings.follow)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundStyle(Color.primary)
+                .foregroundStyle(isCurrentUser ? Color.primary : Color(.systemBackground))
                 .padding(.vertical, 8)
         }
         .frame(maxWidth: .infinity)
+        .background(isCurrentUser ? Color.clear : Color(.systemBlue))
+        .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
-            RoundedRectangle(cornerRadius: 6)
-                .stroke(Color.gray, lineWidth: 1)
+            if isCurrentUser {
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.gray, lineWidth: 1)
+            }
         }
         .padding(.vertical)
     }

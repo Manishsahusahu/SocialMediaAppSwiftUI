@@ -29,4 +29,8 @@ struct Strings {
     static let upload = "Upload"
     static let newPost = "New Post"
     static let cancel = "Cancel"
+    
+    // Profile
+    static let follow = "Follow"
+    static let editProfile = "Edit Profile"
 }
