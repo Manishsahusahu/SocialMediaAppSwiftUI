@@ -8,6 +8,8 @@
 import Foundation
 import PhotosUI
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 class UploadPostViewModel: ObservableObject {
     @Published var caption: String = ""
@@ -19,6 +21,7 @@ class UploadPostViewModel: ObservableObject {
             }
         }
     }
+    private var uiImage: UIImage?
     
     private func loadImage(from item: PhotosPickerItem?) async {
         guard let item else { return }
@@ -26,11 +29,37 @@ class UploadPostViewModel: ObservableObject {
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: data) else { return }
         
+        self.uiImage = uiImage
         await setImage(uiImage: uiImage)
     }
     
     @MainActor
     private func setImage(uiImage: UIImage) {
         self.image = Image(uiImage: uiImage)
+    }
+    
+    func uploadPost(caption: String) {
+        Task {
+            do {
+                guard let uid = AuthService.shared.currentUser?.id else { return }
+                guard let uiImage else { return }
+                guard let imageURL = await ImageUploader.UploadImage(image: uiImage) else { return }
+                
+                let postRef = Firestore.firestore().collection("posts").document()
+                let post = Post(
+                    id: postRef.documentID,
+                    ownerUid: uid,
+                    caption: caption,
+                    likes: 0,
+                    imageUrl: imageURL,
+                    timestamp: Timestamp()
+                )
+                
+                let encodedPost = try Firestore.Encoder().encode(post)
+                try await postRef.setData(encodedPost)
+            } catch {
+                print("Failed to upload post: \(error.localizedDescription)")
+            }
+        }
     }
 }

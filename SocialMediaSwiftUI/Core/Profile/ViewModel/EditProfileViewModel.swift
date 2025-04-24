@@ -41,31 +41,33 @@ class EditProfileViewModel: ObservableObject {
         }
     }
     
-    func updateUserData() async {
-        self.isLoading = true
-        var data: [String: Any] = .init()
-        
-        if let uiImage {
-            let imageURL = await ImageUploader.UploadImage(image: uiImage)
-            data["profileImageUrl"] = imageURL
-        }
-        if !name.isEmpty, name != user.username {
-            data["fullName"] = name
-        }
-        if !bio.isEmpty, bio != user.bio {
-            data["bio"] = bio
-        }
-        
-        if !data.isEmpty {
-            Firestore.firestore().collection("users").document(user.id).updateData(data) { error in
-                switch error {
-                case .none:
-                    Task {
-                        try? await AuthService.shared.loadUserData()
+    func updateUserData() {
+        Task {
+            self.isLoading = true
+            var data: [String: Any] = .init()
+            
+            if let uiImage {
+                let imageURL = await ImageUploader.UploadImage(image: uiImage)
+                data["profileImageUrl"] = imageURL
+            }
+            if !name.isEmpty, name != user.username {
+                data["fullName"] = name
+            }
+            if !bio.isEmpty, bio != user.bio {
+                data["bio"] = bio
+            }
+            
+            if !data.isEmpty {
+                Firestore.firestore().collection("users").document(user.id).updateData(data) { error in
+                    switch error {
+                    case .none:
+                        Task {
+                            try? await AuthService.shared.loadUserData()
+                        }
+                    case .some(let error): print("Error updating user data: \(error)")
                     }
-                case .some(let error): print("Error updating user data: \(error)")
+                    self.isLoading = false
                 }
-                self.isLoading = false
             }
         }
     }
