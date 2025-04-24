@@ -30,9 +30,20 @@ struct EditProfileView: View {
             
             PhotosPicker(selection: $viewModel.selectedImage) {
                 VStack {
-                    Circle()
-                        .fill(Color(.systemGray))
-                        .frame(width: 80, height: 80)
+                    Group {
+                        if let image = viewModel.profileImage {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 80)
+                        } else {
+                            Image(systemName: ImageName.person)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 80)
+                        }
+                    }
+                    .clipShape(Circle())
                     
                     Text(Strings.editProfilePicture)
                         .font(.footnote)
