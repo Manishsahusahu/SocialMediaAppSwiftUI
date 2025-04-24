@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct UploadPostToolbarView: View {
-    let cancel: () -> Void
+    let leadingText: String
+    let trailingText: String
+    let principalText: String
+    let leadingAction: () -> Void
+    let trailingAction: () -> Void
     
     var body: some View {
         HStack {
-            Button { cancel() } label: {
-                Text(Strings.cancel)
+            Button { leadingAction() } label: {
+                Text(leadingText)
             }
             
             Spacer()
             
-            Text(Strings.newPost)
+            Text(principalText)
                 .fontWeight(.semibold)
             
             Spacer()
             
-            Button {} label: {
-                Text(Strings.upload)
+            Button { trailingAction() } label: {
+                Text(trailingText)
                     .fontWeight(.semibold)
             }
         }

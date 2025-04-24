@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileHeaderView: View {
     let user: User
     
+    @State private var showEditProfileView: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -22,33 +24,44 @@ struct ProfileHeaderView: View {
             
             NameAndBioView(fullName: user.fullName, bio: user.bio)
             
-            EditProfileButton(isCurrentUser: user.isCurrentUser)
+            EditProfileButton(isCurrentUser: user.isCurrentUser) {
+                showEditProfileView.toggle()
+            }
         }
         .padding(.horizontal)
+        .fullScreenCover(isPresented: $showEditProfileView) {
+            Text("Edit Profile")
+                .onTapGesture {
+                    showEditProfileView.toggle()
+                }
+        }
     }
 }
 
 private struct EditProfileButton: View {
     let isCurrentUser: Bool
+    let onClick: () -> Void
     
     var body: some View {
-        ZStack {
-            Text(isCurrentUser ? Strings.editProfile : Strings.follow)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundStyle(isCurrentUser ? Color.primary : Color(.systemBackground))
-                .padding(.vertical, 8)
-        }
-        .frame(maxWidth: .infinity)
-        .background(isCurrentUser ? Color.clear : Color(.systemBlue))
-        .clipShape(RoundedRectangle(cornerRadius: 6))
-        .overlay {
-            if isCurrentUser {
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color.gray, lineWidth: 1)
+        Button { onClick() } label: {
+            ZStack {
+                Text(isCurrentUser ? Strings.editProfile : Strings.follow)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(isCurrentUser ? Color.primary : Color(.systemBackground))
+                    .padding(.vertical, 8)
             }
+            .frame(maxWidth: .infinity)
+            .background(isCurrentUser ? Color.clear : Color(.systemBlue))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay {
+                if isCurrentUser {
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.gray, lineWidth: 1)
+                }
+            }
+            .padding(.vertical)
         }
-        .padding(.vertical)
     }
 }
 

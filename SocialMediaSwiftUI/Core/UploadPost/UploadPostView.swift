@@ -12,11 +12,14 @@ struct UploadPostView: View {
     
     var body: some View {
         VStack {
-            UploadPostToolbarView() {
+            UploadPostToolbarView(
+                leadingText: Strings.cancel,
+                trailingText: Strings.upload,
+                principalText: Strings.newPost
+            ) {
                 viewModel.image = nil
                 viewModel.selectedImage = nil
-                
-            }
+            } trailingAction: {}
             
             CreatePostView(viewModel: viewModel)
             
