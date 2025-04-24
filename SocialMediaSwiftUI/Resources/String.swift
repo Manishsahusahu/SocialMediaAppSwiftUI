@@ -9,6 +9,7 @@ import Foundation
 
 struct Strings {
     static let ManishSahu = "Manish Sahu"
+    static let done = "Done"
     
     // Authentication
     static let enterYourEmail = "Enter your email"

@@ -30,10 +30,7 @@ struct ProfileHeaderView: View {
         }
         .padding(.horizontal)
         .fullScreenCover(isPresented: $showEditProfileView) {
-            Text("Edit Profile")
-                .onTapGesture {
-                    showEditProfileView.toggle()
-                }
+            EditProfileView()
         }
     }
 }
