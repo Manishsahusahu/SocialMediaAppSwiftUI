@@ -10,11 +10,17 @@ import Foundation
 class SearchViewModel: ObservableObject {
     @Published var users: [User] = []
     
-    let userService: UserService = .init()
+    init() {
+        Task {
+            try? await fetchAllUsers()
+        }
+    }
     
-    
-    
-    func fetchAllUsers() {
-        users = userService.fetchAllUsers()
+    func fetchAllUsers() async throws {
+        let users = try await UserService.fetchAllUsers()
+        
+        await MainActor.run {
+            self.users = users
+        }
     }
 }

@@ -6,15 +6,17 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import Firebase
 
 class UserService: ObservableObject {
     @Published var users: [User] = []
     
-    func fetchAllUsers() {
-        users = [
-            User(id: "1", username: "Manish", email: "manish@gmail.com"),
-            User(id: "2", username: "Amit", email: "amit@gmail.com"),
-            User(id: "3", username: "Shubham", email: "shubham@gmail.com"),
-        ]
+    static func fetchAllUsers() async throws ->  [User] {
+        let snapshots = try await Firestore.firestore().collection("users").getDocuments()
+    
+        return snapshots.documents.compactMap { doc in
+            try? doc.data(as: User.self)
+        }
     }
 }

@@ -20,9 +20,11 @@ class RegistrationViewModel: ObservableObject {
                 username: username
             )
             
-            email = ""
-            password = ""
-            username = ""
+            await MainActor.run {
+                email = ""
+                password = ""
+                username = ""
+            }
         } catch {
             print("Registration failed: \(error.localizedDescription)")
         }
