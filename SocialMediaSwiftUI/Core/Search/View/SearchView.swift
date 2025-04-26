@@ -18,7 +18,7 @@ struct SearchView: View {
                     ForEach(viewModel.users) { user in
                         NavigationLink(value: user) {
                             HStack {
-                                ProfileImageView(size: .small)
+                                ProfileImageView(imageURL: user.profileImageUrl, size: .small)
                                 
                                 profileMetaView(
                                     username: user.username,

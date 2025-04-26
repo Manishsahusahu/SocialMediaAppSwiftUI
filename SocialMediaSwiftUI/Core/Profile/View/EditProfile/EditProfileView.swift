@@ -41,8 +41,9 @@ struct EditProfileView: View {
                         if let image = viewModel.profileImage {
                             image
                                 .resizable()
-                                .scaledToFit()
+                                .scaledToFill()
                                 .frame(height: 80)
+                                .clipped()
                         } else {
                             Image(systemName: ImageName.person)
                                 .resizable()

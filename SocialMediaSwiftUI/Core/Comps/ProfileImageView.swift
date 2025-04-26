@@ -6,15 +6,29 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileImageView: View {
     let imageURL: String?
     let size: ProfileImageSize
     
     var body: some View {
-        Circle()
-            .fill(Color.gray)
-            .frame(width: size.value, height: size.value)
+        if let imageURL {
+            KFImage.url(URL(string: imageURL))
+                .placeholder {
+                    Circle()
+                        .fill(Color.gray)
+                        .frame(width: size.value, height: size.value)
+                }
+                .resizable()
+                .scaledToFill()
+                .frame(width: size.value, height: size.value)
+                .clipShape(Circle())
+        } else {
+            Circle()
+                .fill(Color.gray)
+                .frame(width: size.value, height: size.value)
+        }
     }
 }
 

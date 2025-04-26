@@ -13,7 +13,7 @@ struct FeedCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let user = post.user {
-                CellHeader(username: user.username)
+                CellHeader(username: user.username, profileImageURL: user.profileImageUrl)
             }
             
             CellMediaView()
@@ -31,10 +31,11 @@ struct FeedCell: View {
 
 private struct CellHeader: View {
     let username: String
+    let profileImageURL: String?
     
     var body: some View {
         HStack {
-            ProfileImageView(size: .small)
+            ProfileImageView(imageURL: profileImageURL, size: .small)
             
             Text(username)
                 .font(.footnote)
