@@ -12,6 +12,7 @@ import Firebase
 import FirebaseFirestore
 
 class UploadPostViewModel: ObservableObject {
+    @Published var isLoading: Bool = false
     @Published var caption: String = ""
     @Published var image: Image?
     @Published var selectedImage: PhotosPickerItem? {
@@ -38,28 +39,28 @@ class UploadPostViewModel: ObservableObject {
         self.image = Image(uiImage: uiImage)
     }
     
-    func uploadPost(caption: String) {
-        Task {
-            do {
-                guard let uid = AuthService.shared.currentUser?.id else { return }
-                guard let uiImage else { return }
-                guard let imageURL = await ImageUploader.UploadImage(image: uiImage) else { return }
-                
-                let postRef = Firestore.firestore().collection("posts").document()
-                let post = Post(
-                    id: postRef.documentID,
-                    ownerUid: uid,
-                    caption: caption,
-                    likes: 0,
-                    imageUrl: imageURL,
-                    timestamp: Timestamp()
-                )
-                
-                let encodedPost = try Firestore.Encoder().encode(post)
-                try await postRef.setData(encodedPost)
-            } catch {
-                print("Failed to upload post: \(error.localizedDescription)")
-            }
+    func uploadPost() async {
+        await MainActor.run { isLoading = true }
+        do {
+            guard let uid = AuthService.shared.currentUser?.id else { return }
+            guard let uiImage else { return }
+            guard let imageURL = await ImageUploader.UploadImage(image: uiImage) else { return }
+            
+            let postRef = Firestore.firestore().collection("posts").document()
+            let post = Post(
+                id: postRef.documentID,
+                ownerUid: uid,
+                caption: caption,
+                likes: 0,
+                imageUrl: imageURL,
+                timestamp: Timestamp()
+            )
+            
+            let encodedPost = try Firestore.Encoder().encode(post)
+            try await postRef.setData(encodedPost)
+        } catch {
+            print("Failed to upload post: \(error.localizedDescription)")
         }
+        await MainActor.run { isLoading = false }
     }
 }
