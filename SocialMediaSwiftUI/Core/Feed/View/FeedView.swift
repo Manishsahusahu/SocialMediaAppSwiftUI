@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct FeedView: View {
-    let posts: [Post]
+    @StateObject private var viewModel: FeedViewModel = .init()
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 32) {
-                    ForEach(posts) { post in
+                    ForEach(viewModel.posts) { post in
                         FeedCell(post: post)
                     }
                 }
