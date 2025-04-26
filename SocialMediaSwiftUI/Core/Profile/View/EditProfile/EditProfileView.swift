@@ -26,7 +26,7 @@ struct EditProfileView: View {
             ) {
                 dismiss()
             } trailingAction: {
-                viewModel.updateUserData()
+                viewModel.editData()
             }
             
             Spacer().frame(height: 16)

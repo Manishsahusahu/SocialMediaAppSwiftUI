@@ -41,32 +41,36 @@ class EditProfileViewModel: ObservableObject {
         }
     }
     
-    func updateUserData() {
+    func editData() {
         Task {
-            self.isLoading = true
-            var data: [String: Any] = .init()
-            
-            if let uiImage {
-                let imageURL = await ImageUploader.UploadImage(image: uiImage)
-                data["profileImageUrl"] = imageURL
-            }
-            if !name.isEmpty, name != user.username {
-                data["fullName"] = name
-            }
-            if !bio.isEmpty, bio != user.bio {
-                data["bio"] = bio
-            }
-            
-            if !data.isEmpty {
-                Firestore.firestore().collection("users").document(user.id).updateData(data) { error in
-                    switch error {
-                    case .none:
-                        Task {
-                            try? await AuthService.shared.loadUserData()
-                        }
-                    case .some(let error): print("Error updating user data: \(error)")
+            await MainActor.run { isLoading = true }
+            await updateUserDataInStore()
+            await MainActor.run { isLoading = false }
+        }
+    }
+    
+    private func updateUserDataInStore() async {
+        var data: [String: Any] = .init()
+        
+        if let uiImage {
+            let imageURL = await ImageUploader.UploadImage(image: uiImage)
+            data["profileImageUrl"] = imageURL
+        }
+        if !name.isEmpty, name != user.username {
+            data["fullName"] = name
+        }
+        if !bio.isEmpty, bio != user.bio {
+            data["bio"] = bio
+        }
+        
+        if !data.isEmpty {
+            Firestore.firestore().collection("users").document(user.id).updateData(data) { error in
+                switch error {
+                case .none:
+                    Task {
+                        try? await AuthService.shared.loadUserData()
                     }
-                    self.isLoading = false
+                case .some(let error): print("Error updating user data: \(error)")
                 }
             }
         }
