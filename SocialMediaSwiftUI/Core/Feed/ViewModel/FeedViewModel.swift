@@ -11,6 +11,12 @@ import FirebaseFirestore
 class FeedViewModel: ObservableObject {
     @Published var posts: [Post] = []
     
+    init() {
+        Task {
+            try? await fetchPosts()
+        }
+    }
+    
     func fetchPosts() async throws {
         let snapshots = try await Firestore.firestore().collection("posts").order(by: "timestamp", descending: true).getDocuments()
         try await MainActor.run {

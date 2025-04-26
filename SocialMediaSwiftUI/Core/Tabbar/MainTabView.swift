@@ -11,11 +11,12 @@ struct MainTabView: View {
     let user: User
     
     @State private var selectedTab: TabType = .feed
+    @State private var shouldReloadFeed: Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("", systemImage: "house", value: .feed) {
-                FeedView(posts: Post.MOCK_POSTS)
+                FeedView(shouldReloadFeed: shouldReloadFeed)
             }
             
             Tab("", systemImage: "magnifyingglass", value: .search) {
@@ -25,6 +26,7 @@ struct MainTabView: View {
             Tab("", systemImage: "plus.square", value: .createPost) {
                 UploadPostView {
                     selectedTab = .feed
+                    shouldReloadFeed = true
                 }
             }
             

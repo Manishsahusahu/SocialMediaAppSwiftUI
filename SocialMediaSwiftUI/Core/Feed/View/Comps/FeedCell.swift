@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FeedCell: View {
     let post: Post
@@ -16,7 +17,7 @@ struct FeedCell: View {
                 CellHeader(username: user.username, profileImageURL: user.profileImageUrl)
             }
             
-            CellMediaView()
+            CellMediaView(imageURL: post.imageUrl)
             
             FeedCellActionButtons()
             
@@ -46,10 +47,26 @@ private struct CellHeader: View {
 }
 
 private struct CellMediaView: View {
+    let imageURL: String
+    
+    @State private var isImageLoaded: Bool = false
+    
     var body: some View {
-        Rectangle()
-            .fill(Color.primary.opacity(0.3))
-            .frame(maxWidth: .infinity)
-            .frame(height: 300)
+        ZStack {
+            KFImage(URL(string: imageURL))
+                .resizable()
+                .onSuccess{ _ in
+                    isImageLoaded = true
+                }
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
+            
+            if !isImageLoaded {
+                Rectangle()
+                    .fill(Color.primary.opacity(0.3))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 300)
+            }
+        }
     }
 }

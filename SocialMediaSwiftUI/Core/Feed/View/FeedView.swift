@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FeedView: View {
+    let shouldReloadFeed: Bool
+    
     @StateObject private var viewModel: FeedViewModel = .init()
     
     var body: some View {
@@ -26,6 +28,16 @@ struct FeedView: View {
             .toolbar {
                 leadingToolbarContent
                 trailingToolbarContent
+            }
+            .refreshable {
+                try? await viewModel.fetchPosts()
+            }
+            .onChange(of: shouldReloadFeed) { _, value in
+                if value {
+                    Task {
+                        try? await viewModel.fetchPosts()
+                    }
+                }
             }
         }
     }
