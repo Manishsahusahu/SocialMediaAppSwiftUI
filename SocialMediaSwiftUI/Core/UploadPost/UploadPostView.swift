@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct UploadPostView: View {
-    @StateObject private var viewModel = UploadPostViewModel()
+    let onCompletion: () -> Void
     
-    @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel = UploadPostViewModel()
     
     var body: some View {
         VStack {
@@ -53,7 +53,7 @@ private extension UploadPostView {
     
     private func clearAndClose() {
         cleanup()
-        dismiss()
+        onCompletion()
     }
     
     private func uploadAction() {
@@ -62,8 +62,4 @@ private extension UploadPostView {
             clearAndClose()
         }
     }
-}
-
-#Preview {
-    UploadPostView()
 }
