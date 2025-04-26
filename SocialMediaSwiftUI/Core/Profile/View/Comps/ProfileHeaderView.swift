@@ -15,7 +15,7 @@ struct ProfileHeaderView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                ProfileImageView(size: .large)
+                ProfileImageView(imageURL: user.profileImageUrl, size: .large)
                 
                 Spacer().frame(width: 30)
                 

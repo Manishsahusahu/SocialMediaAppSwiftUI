@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileImageView: View {
+    let imageURL: String?
     let size: ProfileImageSize
     
     var body: some View {
