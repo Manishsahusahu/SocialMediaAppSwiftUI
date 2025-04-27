@@ -17,4 +17,10 @@ class UserService: ObservableObject {
             try? doc.data(as: User.self)
         }
     }
+    
+    static func fetchUser(uid: String) async throws -> User? {
+        let snapshot = Firestore.firestore().collection("users").document(uid)
+        
+        return try await snapshot.getDocument().data(as: User.self)
+    }
 }
