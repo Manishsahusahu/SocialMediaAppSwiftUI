@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct ProfileGridView: View {
-    @State private var imageURL: String? = nil
+    let user: User
+    
+    @StateObject private var viewModel: ProfileGridViewModel
+    
+    init(user: User) {
+        self.user = user
+        self._viewModel = StateObject(wrappedValue: .init(user: user))
+    }
     
     private let gridItems: [GridItem] = [
         .init(.flexible(), spacing: 1),
@@ -20,7 +27,9 @@ struct ProfileGridView: View {
     
     var body: some View {
         LazyVGrid(columns: gridItems, spacing: 2) {
-            ForEach(testingURLs, id: \.self) { url in
+            ForEach(viewModel.posts) { post in
+                let url = post.imageUrl
+                
                 NavigationLink(value: url) {
                     AsyncImage(url: URL(string: url)) { image in
                         image

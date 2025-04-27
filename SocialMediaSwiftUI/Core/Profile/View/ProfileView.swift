@@ -15,7 +15,7 @@ struct ProfileView: View {
             VStack(spacing: 20) {
                 ProfileHeaderView(user: user)
                 
-                ProfileGridView()
+                ProfileGridView(user: user)
             }
         }
         .scrollIndicators(.hidden)
