@@ -18,36 +18,9 @@ class FeedViewModel: ObservableObject {
     }
     
     func fetchPosts() async throws {
-        let snapshots = try await Firestore.firestore().collection("posts").order(by: "timestamp", descending: true).getDocuments()
-        let decodedPosts = try snapshots.documents.compactMap {
-            try $0.data(as: Post.self)
-        }
+        let posts = try await PostService.fetchPosts()
         await MainActor.run {
-            self.posts = decodedPosts
-        }
-        try await populateUsersInPosts()
-    }
-    
-    private func populateUsersInPosts() async throws {
-        var usersWithPostId: [String: User] = [:]
-        try await withThrowingTaskGroup(of: (Post, User?).self) { group in
-            for post in posts {
-                let userId = post.ownerUid
-                group.addTask {
-                    let user = try await UserService.fetchUser(uid: userId)
-                    return (post, user)
-                }
-            }
-            
-            for try await (post, user) in group {
-                usersWithPostId[post.id] = user
-            }
-        }
-        let immutableUsersWithPostId = usersWithPostId
-        await MainActor.run {
-            for index in self.posts.indices {
-                posts[index].user = immutableUsersWithPostId[posts[index].id]
-            }
+            self.posts = posts
         }
     }
 }
