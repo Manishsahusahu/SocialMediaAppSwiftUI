@@ -38,6 +38,7 @@ struct MainTabView: View {
                 CurrentUserProfileView(user: user)
             }
         }
+        .toolbarBackground(.thinMaterial, for: .tabBar)
         .tint(.primary)
     }
 }
