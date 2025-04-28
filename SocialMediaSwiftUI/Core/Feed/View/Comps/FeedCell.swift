@@ -51,6 +51,10 @@ private struct CellMediaView: View {
     
     @State private var isImageLoaded: Bool = false
     
+    private var maxHeight: CGFloat {
+        isImageLoaded ? .infinity : 240
+    }
+    
     var body: some View {
         ZStack {
             KFImage(URL(string: imageURL))
@@ -59,13 +63,13 @@ private struct CellMediaView: View {
                     isImageLoaded = true
                 }
                 .scaledToFit()
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: maxHeight)
             
             if !isImageLoaded {
                 Rectangle()
                     .fill(Color.primary.opacity(0.3))
                     .frame(maxWidth: .infinity)
-                    .frame(height: 300)
+                    .frame(height: maxHeight)
             }
         }
     }
