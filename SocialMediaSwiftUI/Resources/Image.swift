@@ -8,6 +8,7 @@
 import Foundation
 
 struct ImageName {
+    static let logo = "logo"
     static let heart = "heart"
     static let share = "paperplane"
     static let comment = "bubble.right"

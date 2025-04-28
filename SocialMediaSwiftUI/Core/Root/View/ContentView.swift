@@ -13,11 +13,15 @@ struct ContentView: View {
     @StateObject private var registrationViewModel = RegistrationViewModel()
     
     var body: some View {
-        if let user = AuthService.shared.currentUser {
-            MainTabView(user: user)
+        if viewModel.isLoadingUserData {
+            Image(ImageName.logo)
         } else {
-            LoginView()
-                .environmentObject(registrationViewModel)
+            if let user = AuthService.shared.currentUser {
+                MainTabView(user: user)
+            } else {
+                LoginView()
+                    .environmentObject(registrationViewModel)
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import FirebaseAuth
 import Combine
 
 class ContentViewModel: ObservableObject {
+    @Published var isLoadingUserData = false
     @Published var userSession: FirebaseAuth.User?
     @Published var user: User?
     
@@ -29,15 +30,22 @@ class ContentViewModel: ObservableObject {
         authService.$userSession
             .receive(on: DispatchQueue.main)
             .sink { [weak self] userSession in
-            self?.userSession = userSession
-        }
-        .store(in: &cancellables)
+                self?.userSession = userSession
+            }
+            .store(in: &cancellables)
         
         authService.$currentUser
             .receive(on: DispatchQueue.main)
             .sink { [weak self] user in
-            self?.user = user
-        }
-        .store(in: &cancellables)
+                self?.user = user
+            }
+            .store(in: &cancellables)
+        
+        authService.$isLoadingUserData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoadingUserData in
+                self?.isLoadingUserData = isLoadingUserData
+            }
+            .store(in: &cancellables)
     }
 }

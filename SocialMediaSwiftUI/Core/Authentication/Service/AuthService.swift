@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class AuthService: ObservableObject {
+    @Published var isLoadingUserData = false
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
@@ -17,11 +18,13 @@ class AuthService: ObservableObject {
     
     private init() {
         Task {
+            await toggleIsLoading()
             do {
                 try await self.loadUserData()
             } catch {
                 print("Falied to load user data: \(error.localizedDescription)")
             }
+            await toggleIsLoading()
         }
     }
     
@@ -56,5 +59,11 @@ class AuthService: ObservableObject {
         guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
         
         try? await Firestore.firestore().collection("users").document(uid).setData(encodedUser)
+    }
+    
+    private func toggleIsLoading() async {
+        await MainActor.run {
+            isLoadingUserData.toggle()
+        }
     }
 }
