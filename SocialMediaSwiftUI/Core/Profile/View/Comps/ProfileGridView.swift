@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileGridView: View {
     let user: User
@@ -31,17 +32,11 @@ struct ProfileGridView: View {
                 let url = post.imageUrl
                 
                 NavigationLink(value: url) {
-                    AsyncImage(url: URL(string: url)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 140, height: 140)
-                            .matchedTransitionSource(id: url, in: ProfileNamespace)
-                    } placeholder: {
-                        Rectangle()
-                            .fill(Color(.systemGray))
-                            .frame(width: 140, height: 140)
-                    }
+                    KFImage(URL(string: url))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.width / 3 - 2, height: 140)
+                        .matchedTransitionSource(id: url, in: ProfileNamespace)
                 }
             }
         }
@@ -57,16 +52,10 @@ private struct ImageView: View {
     
     var body: some View {
         ZStack {
-            AsyncImage(url: URL(string: url)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: UIScreen.main.bounds.width)
-            } placeholder: {
-                Rectangle()
-                    .fill(Color(.systemGray))
-                    .frame(width: UIScreen.main.bounds.width)
-            }
+            KFImage(URL(string: url))
+                .resizable()
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
