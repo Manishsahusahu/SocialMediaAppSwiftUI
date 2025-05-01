@@ -11,19 +11,24 @@ struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Spacer()
-                
-                HeaderView()
-                
-                InputFields(viewModel: viewModel)
-                
-                Spacer()
-                
-                Divider()
-                
-                SignUpAction()
+        if viewModel.isLoading {
+            ProgressView()
+                .scaleEffect(1.5)
+        } else {
+            NavigationStack {
+                VStack {
+                    Spacer()
+                    
+                    HeaderView()
+                    
+                    InputFields(viewModel: viewModel)
+                    
+                    Spacer()
+                    
+                    Divider()
+                    
+                    SignUpAction()
+                }
             }
         }
     }
