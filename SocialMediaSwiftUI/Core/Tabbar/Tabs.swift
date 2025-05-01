@@ -12,4 +12,5 @@ enum TabType {
     case search
     case profile
     case createPost
+    case shorts
 }
