@@ -9,6 +9,8 @@ import SwiftUI
 import PhotosUI
 import Firebase
 import FirebaseFirestore
+import Kingfisher
+import Combine
 
 class EditProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
@@ -25,9 +27,13 @@ class EditProfileViewModel: ObservableObject {
     @Published var bio: String = ""
     
     private var uiImage: UIImage?
+    private var kfCancellable: Kingfisher.DownloadTask?
     
     init(user: User) {
         self.user = user
+        self.name = user.fullName ?? ""
+        self.bio = user.bio ?? ""
+        loadExistingImage()
     }
     
     func loadImage(from item: PhotosPickerItem?) async {
@@ -72,6 +78,20 @@ class EditProfileViewModel: ObservableObject {
                     }
                 case .some(let error): print("Error updating user data: \(error)")
                 }
+            }
+        }
+    }
+    
+    private func loadExistingImage() {
+        guard let urlString = user.profileImageUrl else { return }
+        guard let url = URL(string: urlString) else { return }
+        
+        let resource = KF.ImageResource(downloadURL: url)
+        kfCancellable = KingfisherManager.shared.retrieveImage(with: resource) { [weak self] result in
+            switch result {
+            case .success(let image): self?.profileImage = Image(uiImage: image.image)
+            case .failure(let error):
+                print("Failed to fetch image: \(error)")
             }
         }
     }
