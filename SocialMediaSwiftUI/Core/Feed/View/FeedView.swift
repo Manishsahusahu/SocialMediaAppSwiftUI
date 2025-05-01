@@ -43,9 +43,9 @@ struct FeedView: View {
     
     private var leadingToolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            Text(Strings.manishSahuApp)
+            Text(Strings.manishApp)
                 .font(.headline)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
         }
     }
 }
