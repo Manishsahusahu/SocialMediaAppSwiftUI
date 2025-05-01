@@ -28,6 +28,7 @@ struct MainTabView: View {
             Tab("", systemImage: "plus.square", value: .createPost) {
                 UploadPostView {
                     selectedTab = .feed
+                } reload: {
                     shouldReloadFeed = true
                 }
                 .toolbarBackground(.thinMaterial, for: .tabBar)

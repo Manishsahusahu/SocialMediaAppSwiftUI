@@ -11,11 +11,14 @@ import SwiftUI
 
 class ImageUploader {
     static func UploadImage(image: UIImage, for uploadFor: UploadFor) async -> String? {
+        guard let userId = AuthService.shared.currentUser?.id else { return nil }
         guard let imageData = image.jpegData(
             compressionQuality: uploadFor.compressionQuality
         ) else { return nil }
+        
         let fileName = UUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/\(uploadFor.path)/\(fileName)")
+        let path = "/\(uploadFor.path)/\(userId)/\(fileName)"
+        let ref = Storage.storage().reference(withPath: path)
         
         do {
             let _ = try await ref.putDataAsync(imageData)

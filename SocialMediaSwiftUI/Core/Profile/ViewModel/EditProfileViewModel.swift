@@ -59,7 +59,7 @@ class EditProfileViewModel: ObservableObject {
         var data: [String: Any] = .init()
         
         if let uiImage {
-            let imageURL = await ImageUploader.UploadImage(image: uiImage)
+            let imageURL = await ImageUploader.UploadImage(image: uiImage, for: .profile)
             data["profileImageUrl"] = imageURL
         }
         if !name.isEmpty, name != user.username {

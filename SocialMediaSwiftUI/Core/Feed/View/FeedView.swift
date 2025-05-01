@@ -27,7 +27,6 @@ struct FeedView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 leadingToolbarContent
-                trailingToolbarContent
             }
             .refreshable {
                 try? await viewModel.fetchPosts()
@@ -44,15 +43,9 @@ struct FeedView: View {
     
     private var leadingToolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            Text("DonManish")
+            Text(Strings.manishSahuApp)
                 .font(.headline)
                 .fontWeight(.bold)
-        }
-    }
-    
-    private var trailingToolbarContent: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Image(systemName: ImageName.share)
         }
     }
 }

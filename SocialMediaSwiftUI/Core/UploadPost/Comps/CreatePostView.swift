@@ -12,6 +12,7 @@ struct CreatePostView: View {
     @ObservedObject var viewModel: UploadPostViewModel
     
     @State private var isImagePickerPresented: Bool = false
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         HStack(spacing: 8) {
@@ -24,12 +25,28 @@ struct CreatePostView: View {
                 }
             }
             .frame(width: 100, height: 100)
+            .onTapGesture {
+                isImagePickerPresented.toggle()
+            }
             
             TextField(
                 "Enter your caption...",
                 text: $viewModel.caption,
                 axis: .vertical
             )
+            .focused($isFocused)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button { isFocused = false } label: {
+                            Text(Strings.close)
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
+            }
         }
         .padding()
         .onAppear {
@@ -37,7 +54,8 @@ struct CreatePostView: View {
         }
         .photosPicker(
             isPresented: $isImagePickerPresented,
-            selection: $viewModel.selectedImage
+            selection: $viewModel.selectedImage,
+            matching: .images
         )
     }
 }

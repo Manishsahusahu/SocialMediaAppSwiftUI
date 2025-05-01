@@ -8,8 +8,10 @@
 import Foundation
 
 struct Strings {
+    static let manishSahuApp = "ManishSahuApp"
     static let ManishSahu = "Manish Sahu"
     static let done = "Done"
+    static let close = "Close"
     
     // Authentication
     static let enterYourEmail = "Enter your email"

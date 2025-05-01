@@ -11,6 +11,7 @@ struct ToolbarView: View {
     let leadingText: String
     let trailingText: String
     let principalText: String
+    let isTrailingActionDisabled: Bool
     let leadingAction: () -> Void
     let trailingAction: () -> Void
     
@@ -31,6 +32,7 @@ struct ToolbarView: View {
                 Text(trailingText)
                     .fontWeight(.semibold)
             }
+            .disabled(isTrailingActionDisabled)
         }
         .padding(.horizontal)
     }

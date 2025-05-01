@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct UploadPostView: View {
-    let onCompletion: () -> Void
+    let gotoFeed: () -> Void
+    let reload: () -> Void
     
     @StateObject private var viewModel = UploadPostViewModel()
     
@@ -18,6 +19,7 @@ struct UploadPostView: View {
                 leadingText: Strings.cancel,
                 trailingText: Strings.upload,
                 principalText: Strings.newPost,
+                isTrailingActionDisabled: isTrailingActionDisabled,
                 leadingAction: clearAndClose,
                 trailingAction: uploadAction
             )
@@ -35,11 +37,6 @@ struct UploadPostView: View {
                 .background(Color.black.opacity(0.15))
             }
         }
-        .onChange(of: viewModel.isLoading) { _, newValue in
-            if !newValue {
-                clearAndClose()
-            }
-        }
     }
 }
 
@@ -53,13 +50,18 @@ private extension UploadPostView {
     
     private func clearAndClose() {
         cleanup()
-        onCompletion()
+        gotoFeed()
     }
     
     private func uploadAction() {
         Task {
             await viewModel.uploadPost()
             clearAndClose()
+            reload()
         }
+    }
+    
+    private var isTrailingActionDisabled: Bool {
+        viewModel.selectedImage == nil
     }
 }

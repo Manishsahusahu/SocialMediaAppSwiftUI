@@ -22,7 +22,8 @@ struct EditProfileView: View {
             ToolbarView(
                 leadingText: Strings.cancel,
                 trailingText: Strings.done,
-                principalText: Strings.editProfile
+                principalText: Strings.editProfile,
+                isTrailingActionDisabled: viewModel.selectedImage == nil
             ) {
                 dismiss()
             } trailingAction: {
@@ -35,7 +36,7 @@ struct EditProfileView: View {
             
             Spacer().frame(height: 16)
             
-            PhotosPicker(selection: $viewModel.selectedImage) {
+            PhotosPicker(selection: $viewModel.selectedImage, matching: .images) {
                 VStack {
                     Group {
                         if let image = viewModel.profileImage {
