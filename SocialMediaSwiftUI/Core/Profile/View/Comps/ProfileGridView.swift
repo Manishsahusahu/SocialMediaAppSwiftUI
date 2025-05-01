@@ -31,34 +31,33 @@ struct ProfileGridView: View {
             ForEach(viewModel.posts) { post in
                 let url = post.imageUrl
                 
-                NavigationLink(value: url) {
-                    ImageWrapper(url: url, namespace: ProfileNamespace)
+                NavigationLink(value: post) {
+                    ImageWrapper(url: url, id: post.id, namespace: ProfileNamespace)
                 }
             }
         }
-        .navigationDestination(for: String.self) { url in
-            ImageView(url: url)
-                .navigationTransition(.zoom(sourceID: url, in: ProfileNamespace))
+        .navigationDestination(for: Post.self) { post in
+            FeedCellView(post: post)
+                .navigationTransition(.zoom(sourceID: post.id, in: ProfileNamespace))
         }
     }
 }
 
-private struct ImageView: View {
-    let url: String
+private struct FeedCellView: View {
+    let post: Post
     
     var body: some View {
-        ZStack {
-            KFImage(URL(string: url))
-                .resizable()
-                .scaledToFit()
-                .frame(width: UIScreen.main.bounds.width)
+        VStack {
+            FeedCell(post: post)
+            
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 private struct ImageWrapper: UIViewRepresentable {
     let url: String
+    let id: String
     let namespace: Namespace.ID
     
     func makeUIView(context: Context) -> UIView {
@@ -68,7 +67,7 @@ private struct ImageWrapper: UIViewRepresentable {
                     .resizable()
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width / 3 - 2, height: 140)
-                    .matchedTransitionSource(id: url, in: namespace)
+                    .matchedTransitionSource(id: id, in: namespace)
             
         )
         

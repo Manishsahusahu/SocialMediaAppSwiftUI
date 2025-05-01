@@ -49,28 +49,18 @@ private struct CellHeader: View {
 private struct CellMediaView: View {
     let imageURL: String
     
-    @State private var isImageLoaded: Bool = false
-    
-    private var maxHeight: CGFloat {
-        isImageLoaded ? .infinity : 240
-    }
-    
     var body: some View {
         ZStack {
+            Rectangle()
+                .fill(Color.primary.opacity(0.3))
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
+            
             KFImage(URL(string: imageURL))
                 .resizable()
-                .onSuccess{ _ in
-                    isImageLoaded = true
-                }
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: maxHeight)
-            
-            if !isImageLoaded {
-                Rectangle()
-                    .fill(Color.primary.opacity(0.3))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: maxHeight)
-            }
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: 300)
+                .clipped()
         }
     }
 }
