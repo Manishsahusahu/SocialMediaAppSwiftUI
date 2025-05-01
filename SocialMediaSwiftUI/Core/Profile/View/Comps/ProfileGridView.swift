@@ -32,11 +32,7 @@ struct ProfileGridView: View {
                 let url = post.imageUrl
                 
                 NavigationLink(value: url) {
-                    KFImage(URL(string: url))
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width / 3 - 2, height: 140)
-                        .matchedTransitionSource(id: url, in: ProfileNamespace)
+                    ImageWrapper(url: url, namespace: ProfileNamespace)
                 }
             }
         }
@@ -61,10 +57,24 @@ private struct ImageView: View {
     }
 }
 
-
-let testingURLs = [
-    "https://images.unsplash.com/photo-1742240216264-f0aac25ef4ba?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1743710426934-89887ca897d8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8",
-    "https://images.unsplash.com/photo-1744059510494-3e071c0b3596?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1744754222043-c337f2728640?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D"
-]
+private struct ImageWrapper: UIViewRepresentable {
+    let url: String
+    let namespace: Namespace.ID
+    
+    func makeUIView(context: Context) -> UIView {
+        let hostingController = UIHostingController(
+            rootView:
+                KFImage(URL(string: url))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width / 3 - 2, height: 140)
+                    .matchedTransitionSource(id: url, in: namespace)
+            
+        )
+        
+        return hostingController.view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+    }
+}
