@@ -14,12 +14,8 @@ struct ContentView: View {
     
     var body: some View {
         if viewModel.isLoadingUserData {
-            Image(ImageName.logo)
-                .resizable()
-                .scaledToFit()
-                .containerRelativeFrame(.horizontal) { length, _ in
-                    length * 0.7
-                }
+            ProgressView()
+                .scaleEffect(1.5)
         } else {
             if let user = AuthService.shared.currentUser {
                 MainTabView(user: user)
