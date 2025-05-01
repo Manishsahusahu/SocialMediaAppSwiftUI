@@ -15,6 +15,7 @@ struct Post: Identifiable, Hashable, Codable {
     var likes: Int
     var imageUrl: String
     let timestamp: Timestamp
+    let video: Video?
     var user: User?
     
     var dateAgo: Date {
@@ -31,6 +32,7 @@ extension Post {
             likes: 123,
             imageUrl: "",
             timestamp: .init(),
+            video: nil,
             user: User.MOCK_USERS[0]
         ),
         .init(
@@ -40,6 +42,7 @@ extension Post {
             likes: 193,
             imageUrl: "",
             timestamp: .init(),
+            video: nil,
             user: User.MOCK_USERS[5]
         ),
         .init(
@@ -49,6 +52,7 @@ extension Post {
             likes: 133,
             imageUrl: "",
             timestamp: .init(),
+            video: nil,
             user: User.MOCK_USERS[3]
         ),
         .init(
@@ -58,6 +62,7 @@ extension Post {
             likes: 93,
             imageUrl: "",
             timestamp: .init(),
+            video: nil,
             user: User.MOCK_USERS[2]
         ),
         .init(
@@ -67,6 +72,7 @@ extension Post {
             likes: 993,
             imageUrl: "",
             timestamp: .init(),
+            video: nil,
             user: User.MOCK_USERS[3]
         ),
     ]

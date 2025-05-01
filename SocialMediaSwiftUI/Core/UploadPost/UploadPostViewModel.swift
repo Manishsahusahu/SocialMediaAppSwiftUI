@@ -53,7 +53,8 @@ class UploadPostViewModel: ObservableObject {
                 caption: caption,
                 likes: 0,
                 imageUrl: imageURL,
-                timestamp: Timestamp()
+                timestamp: Timestamp(),
+                video: nil
             )
             
             let encodedPost = try Firestore.Encoder().encode(post)
