@@ -28,7 +28,13 @@ struct ProfileView: View {
     
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            Button {} label: {
+            Menu {
+                Button {
+                    AuthService.shared.signOut()
+                } label: {
+                    Text(Strings.signOut)
+                }
+            } label: {
                 Image(systemName: "line.3.horizontal")
                     .renderingMode(.template)
                     .foregroundStyle(Color.primary)

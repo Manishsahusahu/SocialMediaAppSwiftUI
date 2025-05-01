@@ -27,6 +27,7 @@ struct Strings {
     static let password = "Password"
     static let donthaveaccount = "Don't have an account?"
     static let signup = "Sign up"
+    static let signOut = "Sign out"
     
     // Upload Post
     static let upload = "Upload"
