@@ -52,6 +52,7 @@ private struct FeedCellView: View {
             
             Spacer()
         }
+        .padding(.top, 24)
     }
 }
 

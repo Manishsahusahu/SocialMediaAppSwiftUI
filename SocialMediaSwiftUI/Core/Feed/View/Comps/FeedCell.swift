@@ -24,7 +24,8 @@ struct FeedCell: View {
             CellFooterView(
                 likes: post.likes,
                 caption: post.caption,
-                fullname: post.user?.fullName ?? ""
+                fullname: post.user?.fullName ?? "",
+                timeAgo: post.dateAgo.relativeTimeDisplay()
             )
         }
     }

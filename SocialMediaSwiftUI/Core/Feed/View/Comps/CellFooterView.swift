@@ -11,6 +11,7 @@ struct CellFooterView: View {
     let likes: Int
     let caption: String
     let fullname: String
+    let timeAgo: String
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,7 +30,7 @@ struct CellFooterView: View {
             .padding(.horizontal, 8)
             .padding(.top, 1)
             
-            Text("6h ago")
+            Text(timeAgo)
                 .font(.footnote)
                 .foregroundColor(.gray)
                 .padding(.horizontal, 8)

@@ -16,6 +16,10 @@ struct Post: Identifiable, Hashable, Codable {
     var imageUrl: String
     let timestamp: Timestamp
     var user: User?
+    
+    var dateAgo: Date {
+        return Date(timeIntervalSince1970: Double(timestamp.seconds))
+    }
 }
 
 extension Post {
