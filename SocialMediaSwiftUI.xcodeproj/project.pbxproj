@@ -36,9 +36,22 @@
 		120FAC392DA4C05A002BE8CF /* SocialMediaSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialMediaSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		12E1BAF02DC33DD20023FA1E /* Exceptions for "SocialMediaSwiftUI" folder in "SocialMediaSwiftUI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 120FAC1E2DA4C058002BE8CF /* SocialMediaSwiftUI */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		120FAC212DA4C058002BE8CF /* SocialMediaSwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				12E1BAF02DC33DD20023FA1E /* Exceptions for "SocialMediaSwiftUI" folder in "SocialMediaSwiftUI" target */,
+			);
 			path = SocialMediaSwiftUI;
 			sourceTree = "<group>";
 		};
@@ -426,6 +439,7 @@
 				DEVELOPMENT_TEAM = 2HYFCLT39H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocialMediaSwiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -455,6 +469,7 @@
 				DEVELOPMENT_TEAM = 2HYFCLT39H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocialMediaSwiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
