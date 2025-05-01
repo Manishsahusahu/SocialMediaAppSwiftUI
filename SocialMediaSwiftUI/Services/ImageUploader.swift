@@ -10,10 +10,12 @@ import FirebaseStorage
 import SwiftUI
 
 class ImageUploader {
-    static func UploadImage(image: UIImage) async -> String? {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
+    static func UploadImage(image: UIImage, for uploadFor: UploadFor) async -> String? {
+        guard let imageData = image.jpegData(
+            compressionQuality: uploadFor.compressionQuality
+        ) else { return nil }
         let fileName = UUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/profile_image/\(fileName)")
+        let ref = Storage.storage().reference(withPath: "/\(uploadFor.path)/\(fileName)")
         
         do {
             let _ = try await ref.putDataAsync(imageData)
@@ -21,6 +23,25 @@ class ImageUploader {
         } catch {
             print("Failed to upload image: \(error.localizedDescription)")
             return nil
+        }
+    }
+    
+    enum UploadFor {
+        case profile
+        case post
+        
+        var path: String {
+            switch self {
+            case .post: return "posts_image"
+            case .profile: return "profile_image"
+            }
+        }
+        
+        var compressionQuality: CGFloat {
+            switch self {
+            case .post: return 0.5
+            case .profile: return 0.3
+            }
         }
     }
 }
