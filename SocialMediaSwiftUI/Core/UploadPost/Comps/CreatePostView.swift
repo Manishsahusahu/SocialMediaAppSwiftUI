@@ -49,7 +49,8 @@ struct CreatePostView: View {
             }
         }
         .padding()
-        .onAppear {
+        .task {
+            try? await Task.sleep(for: .seconds(0.2))
             isImagePickerPresented.toggle()
         }
         .photosPicker(

@@ -10,7 +10,6 @@ import Foundation
 enum TabType {
     case feed
     case search
-    case notifications
     case profile
     case createPost
 }

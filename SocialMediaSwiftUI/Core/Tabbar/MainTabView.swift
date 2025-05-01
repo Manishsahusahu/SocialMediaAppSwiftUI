@@ -34,11 +34,6 @@ struct MainTabView: View {
                 .toolbarBackground(.thinMaterial, for: .tabBar)
             }
             
-            Tab("", systemImage: "heart", value: .notifications) {
-                Text("Notifications")
-                    .toolbarBackground(.thinMaterial, for: .tabBar)
-            }
-            
             Tab("", systemImage: "person", value: .profile) {
                 CurrentUserProfileView(user: user)
                     .toolbarBackground(.thinMaterial, for: .tabBar)
