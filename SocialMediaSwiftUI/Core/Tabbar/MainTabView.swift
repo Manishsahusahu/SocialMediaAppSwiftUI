@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     let user: User
     
-    @State private var selectedTab: TabType = .feed
+    @State private var selectedTab: TabType = .shorts
     @State private var shouldReloadFeed: Bool = false
     
     var body: some View {
