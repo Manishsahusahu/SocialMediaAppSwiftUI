@@ -8,9 +8,9 @@
 import Foundation
 
 struct Video: Codable, Identifiable, Hashable {
-    var url: String
+    let sources: [String]
     
     var id: String {
-        url
+        sources.first ?? UUID().uuidString
     }
 }

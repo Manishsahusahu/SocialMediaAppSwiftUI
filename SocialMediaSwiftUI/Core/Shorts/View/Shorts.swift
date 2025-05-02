@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Shorts: View {
+    @StateObject private var viewModel = ShortsViewModel()
     
     var body: some View {
         ScrollView {
@@ -15,5 +16,7 @@ struct Shorts: View {
                 
             }
         }
+        
     }
 }
+
