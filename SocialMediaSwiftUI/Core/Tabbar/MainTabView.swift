@@ -31,7 +31,7 @@ struct MainTabView: View {
                 }
             }
             
-            Tab("", systemImage: "film.stack", value: .shorts) {
+            Tab("", systemImage: "play.square.stack", value: .shorts) {
                 Shorts()
             }
             

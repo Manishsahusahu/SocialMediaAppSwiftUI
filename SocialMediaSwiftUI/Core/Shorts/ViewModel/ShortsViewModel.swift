@@ -1,19 +1,17 @@
 //
-//  Shorts.swift
+//  ShortsViewModel.swift
 //  SocialMediaSwiftUI
 //
 //  Created by Manish sahu on 02/05/25.
 //
 
-import SwiftUI
+import Foundation
 
-struct Shorts: View {
-    var body: some View {
-        ScrollView {
-            LazyVStack {
-                
-            }
-        }
+class ShortsViewModel: ObservableObject {
+    @Published var videos: [Video] = []
+    
+    init() {
+        self.videos = videos
     }
 }
 
