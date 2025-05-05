@@ -14,7 +14,7 @@ struct Shorts: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 0) {
                 ForEach(viewModel.videos) { video in
                     if let source = video.sources.first, let url = URL(string: source) {
                         ShortCellView(url: url)
@@ -23,7 +23,9 @@ struct Shorts: View {
             }
             .scrollTargetLayout()
         }
-        .scrollTargetBehavior(.viewAligned(limitBehavior: .alwaysByOne))
+        .scrollTargetBehavior(.paging)
         .scrollPosition(id: $scrollItemId)
+        .ignoresSafeArea()
+        .toolbarVisibility(.hidden, for: .tabBar)
     }
 }

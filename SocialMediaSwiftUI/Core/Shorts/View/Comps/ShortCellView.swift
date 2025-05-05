@@ -20,13 +20,16 @@ struct ShortCellView: View {
     var body: some View {
         MyVideoPlayer(player: $player)
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .overlay {
+                Rectangle()
+                    .stroke(Color.pink, lineWidth: 1)
+            }
             .onAppear {
                 player.play()
             }
             .onDisappear {
                 player.pause()
             }
-            .ignoresSafeArea(.all)
     }
 }
 
@@ -36,10 +39,10 @@ struct MyVideoPlayer: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
         controller.player = player
-        controller.videoGravity = .resizeAspectFill
-        controller.view.backgroundColor = .black
-        controller.view.frame = UIScreen.main.bounds
-        controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        controller.videoGravity = .resizeAspectFill
+//        controller.view.backgroundColor = .black
+//        controller.view.frame = UIScreen.main.bounds
+//        controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         player.play()
         return controller
     }
