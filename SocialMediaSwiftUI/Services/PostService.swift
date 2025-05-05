@@ -40,7 +40,7 @@ class PostService {
     
     static func fetchUserPosts(user: User) async throws -> [Post] {
         let snapshots = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: user.id).getDocuments()
-        var posts = try snapshots.documents.compactMap {
+        let posts = try snapshots.documents.compactMap {
             var post = try $0.data(as: Post.self)
             post.user = user
             return post

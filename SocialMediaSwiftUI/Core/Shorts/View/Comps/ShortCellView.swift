@@ -9,35 +9,19 @@ import SwiftUI
 import AVKit
 
 struct ShortCellView: View {
-    let url: URL
-    
-    init(url: URL) {
-        self.url = url
-        self._player = State(wrappedValue: .init(url: url))
-    }
-    @State private var player: AVPlayer
+    @Binding var player: AVPlayer?
     
     var body: some View {
-        MyVideoPlayer(player: $player)
+        MyVideoPlayer(player: player ?? .init())
             .frame(width: UIScreen.main.bounds.width)
             .containerRelativeFrame(.vertical) { length, _ in
                 return length
-            }
-            .overlay {
-                Rectangle()
-                    .stroke(Color.pink, lineWidth: 1)
-            }
-            .onAppear {
-                player.play()
-            }
-            .onDisappear {
-                player.pause()
             }
     }
 }
 
 struct MyVideoPlayer: UIViewControllerRepresentable {
-    @Binding var player: AVPlayer
+    let player: AVPlayer
     
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
