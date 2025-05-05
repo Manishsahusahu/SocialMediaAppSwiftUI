@@ -26,6 +26,5 @@ struct Shorts: View {
         .scrollTargetBehavior(.paging)
         .scrollPosition(id: $scrollItemId)
         .ignoresSafeArea()
-        .toolbarVisibility(.hidden, for: .tabBar)
     }
 }
